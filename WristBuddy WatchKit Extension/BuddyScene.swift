@@ -15,22 +15,16 @@ class BuddyScene: SKScene {
     var lionRestingFrames: [SKTexture] = []
     var lionWavingFrames: [SKTexture] = []
     var firstFrameTexture = SKTexture()
+    
     override func sceneDidLoad() {
-//        labelNode = childNode(withName: "spriteLabel")! as! SKLabelNode
-//        testNode = SKSpriteNode(imageNamed: "catSprite")
-//        testNode.setScale(0.2)
-//        testNode.position = CGPoint(x: 0, y: 0)
-        SetupAnimations()
-        setupLion()
+        setupRestingAnimation()
+        restLion()
+        scene?.addChild(lion)
         
-//        scene?.addChild(testNode)
-//        labelNode.text = "tap the pussy"
-//        labelNode.fontSize = 30
-//        labelNode.position = CGPoint(x: 0, y: -70)
-//        print(labelNode)
     }
     
-    func SetupAnimations(){
+    func setupRestingAnimation(){
+        lion.removeAllActions()
         let lionRestingAtlas = SKTextureAtlas(named: "lionResting")
         var restFrames: [SKTexture] = []
         let numImages = lionRestingAtlas.textureNames.count
@@ -40,16 +34,19 @@ class BuddyScene: SKScene {
         }
         lionRestingFrames = restFrames
         firstFrameTexture = lionRestingFrames[0]
-        lion = SKSpriteNode(texture: firstFrameTexture)
-        lion.position = CGPoint(x: frame.midX, y: frame.midY - 20)
+        let setRestTexture = SKAction.setTexture(firstFrameTexture, resize: false)
+        lion.run(setRestTexture)
+        lion.position = CGPoint(x: frame.midX, y: frame.midY - 10)
     }
     
-    func setupLion(){
-        scene?.addChild(lion)
+    func restLion(){
+        setupRestingAnimation()
+        print("Resting...")
         lion.run(SKAction.repeatForever(SKAction.animate(with: lionRestingFrames, timePerFrame: 0.3, resize: false, restore: false)), withKey: "restingLion")
     }
-    
     func waveLion(){
+        print("Hello!")
+        lion.removeAllActions()
         let lionWavingAtlas = SKTextureAtlas(named: "lionWaving")
         var waveFrames: [SKTexture] = []
         let numImages = lionWavingAtlas.textureNames.count
@@ -57,13 +54,20 @@ class BuddyScene: SKScene {
             let lionTextureName = "lionWaving\(i)"
             waveFrames.append(lionWavingAtlas.textureNamed(lionTextureName))
         }
+        // Reverse the animation loop
+        for i in stride(from: numImages, to: 1, by: -1) {
+            let lionTextureName = "lionWaving\(i)"
+            waveFrames.append(lionWavingAtlas.textureNamed(lionTextureName))
+        }
         lionWavingFrames = waveFrames
         firstFrameTexture = lionWavingFrames[0]
-        lion = SKSpriteNode(texture: firstFrameTexture)
         let setWaveTexture = SKAction.setTexture(firstFrameTexture, resize: false)
         lion.run(setWaveTexture)
-        lion.run(SKAction.repeat(SKAction.animate(with: lionWavingFrames, timePerFrame: 0.3, resize: false, restore: true), count: 2), withKey: "wavingLion")
-        //setupLion()
+        lion.run(SKAction.repeat(SKAction.animate(with: lionWavingFrames, timePerFrame: 0.3, resize: false, restore: true), count: 1), completion: {
+            self.restLion()
+        })
+        
+
     }
     
     func didTap(atPosition: CGPoint) {
@@ -72,7 +76,6 @@ class BuddyScene: SKScene {
         let hitNodes = self.nodes(at: atPosition)
         if hitNodes.contains(lion) {
             waveLion()
-            print("Tapped on buddy")
         }
         
     }
