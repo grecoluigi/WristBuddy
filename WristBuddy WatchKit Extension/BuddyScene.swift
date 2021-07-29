@@ -20,6 +20,7 @@ class BuddyScene: SKScene {
 //        testNode = SKSpriteNode(imageNamed: "catSprite")
 //        testNode.setScale(0.2)
 //        testNode.position = CGPoint(x: 0, y: 0)
+        SetupAnimations()
         setupLion()
         
 //        scene?.addChild(testNode)
@@ -30,10 +31,6 @@ class BuddyScene: SKScene {
     }
     
     func SetupAnimations(){
-        
-    }
-    
-    func setupLion(){
         let lionRestingAtlas = SKTextureAtlas(named: "lionResting")
         var restFrames: [SKTexture] = []
         let numImages = lionRestingAtlas.textureNames.count
@@ -45,6 +42,9 @@ class BuddyScene: SKScene {
         firstFrameTexture = lionRestingFrames[0]
         lion = SKSpriteNode(texture: firstFrameTexture)
         lion.position = CGPoint(x: frame.midX, y: frame.midY - 20)
+    }
+    
+    func setupLion(){
         scene?.addChild(lion)
         lion.run(SKAction.repeatForever(SKAction.animate(with: lionRestingFrames, timePerFrame: 0.3, resize: false, restore: false)), withKey: "restingLion")
     }
@@ -62,8 +62,7 @@ class BuddyScene: SKScene {
         lion = SKSpriteNode(texture: firstFrameTexture)
         let setWaveTexture = SKAction.setTexture(firstFrameTexture, resize: false)
         lion.run(setWaveTexture)
-        lion.position = CGPoint(x: frame.midX, y: frame.midY - 20)
-        lion.run(SKAction.repeat(SKAction.animate(with: lionWavingFrames, timePerFrame: 0.3, resize: false, restore: true), count: 2))
+        lion.run(SKAction.repeat(SKAction.animate(with: lionWavingFrames, timePerFrame: 0.3, resize: false, restore: true), count: 2), withKey: "wavingLion")
         //setupLion()
     }
     
