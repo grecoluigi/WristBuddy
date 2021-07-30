@@ -21,6 +21,8 @@
 		819F908126AB2F4300465F1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 819F908026AB2F4300465F1A /* Assets.xcassets */; };
 		819F909226AB31B800465F1A /* Buddy.sks in Resources */ = {isa = PBXBuildFile; fileRef = 819F909126AB31B800465F1A /* Buddy.sks */; };
 		819F909426AB372000465F1A /* BuddyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F909326AB372000465F1A /* BuddyScene.swift */; };
+		8285BD4C26B4576700435B5B /* boneAnim.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8285BD4B26B4576700435B5B /* boneAnim.atlas */; };
+		8285BD5026B4597000435B5B /* boneAnim.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8285BD4B26B4576700435B5B /* boneAnim.atlas */; };
 		829F1DFC26B2F4B90024C766 /* objects.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 829F1DFB26B2F4B90024C766 /* objects.atlas */; };
 		829F1DFD26B2F4B90024C766 /* objects.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 829F1DFB26B2F4B90024C766 /* objects.atlas */; };
 /* End PBXBuildFile section */
@@ -84,6 +86,7 @@
 		819F908326AB2F4300465F1A /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		819F909126AB31B800465F1A /* Buddy.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Buddy.sks; sourceTree = "<group>"; };
 		819F909326AB372000465F1A /* BuddyScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyScene.swift; sourceTree = "<group>"; };
+		8285BD4B26B4576700435B5B /* boneAnim.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = boneAnim.atlas; sourceTree = "<group>"; };
 		829F1DFB26B2F4B90024C766 /* objects.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = objects.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,6 +125,7 @@
 			children = (
 				819F906926AB2F4200465F1A /* Interface.storyboard */,
 				819F906C26AB2F4200465F1A /* Assets.xcassets */,
+				8285BD4B26B4576700435B5B /* boneAnim.atlas */,
 				829F1DFB26B2F4B90024C766 /* objects.atlas */,
 				81790BE026B264B70031181B /* lionWaving.atlas */,
 				819F906E26AB2F4200465F1A /* Info.plist */,
@@ -255,6 +259,7 @@
 				81790BE126B264B70031181B /* lionWaving.atlas in Resources */,
 				829F1DFC26B2F4B90024C766 /* objects.atlas in Resources */,
 				819F906B26AB2F4200465F1A /* Interface.storyboard in Resources */,
+				8285BD4C26B4576700435B5B /* boneAnim.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8285BD5026B4597000435B5B /* boneAnim.atlas in Resources */,
 				829F1DFD26B2F4B90024C766 /* objects.atlas in Resources */,
 				819F909226AB31B800465F1A /* Buddy.sks in Resources */,
 				81790BE226B264B70031181B /* lionWaving.atlas in Resources */,

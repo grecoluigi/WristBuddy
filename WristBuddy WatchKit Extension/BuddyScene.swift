@@ -14,10 +14,12 @@ class BuddyScene: SKScene {
     var lion = SKSpriteNode()
     var lionRestingFrames: [SKTexture] = []
     var lionWavingFrames: [SKTexture] = []
+    var boneAnimationFrames: [SKTexture] = []
     var firstFrameTexture = SKTexture()
     var boneNode = SKSpriteNode()
     var soapNode = SKSpriteNode()
     var ballNode = SKSpriteNode()
+    var boneAnimNode = SKSpriteNode()
     let objectsAtlas = SKTextureAtlas(named: "objects")
     
     override func sceneDidLoad() {
@@ -27,6 +29,7 @@ class BuddyScene: SKScene {
         setupBone()
         setupSoap()
         setupBall()
+        setupBoneAnim()
     }
     
     func setupBone(){
@@ -35,6 +38,24 @@ class BuddyScene: SKScene {
         boneNode.run(setBone)
         boneNode.position = CGPoint(x: frame.midX - 50 , y: frame.midY - 80)
         scene?.addChild(boneNode)
+    }
+    
+    func setupBoneAnim(){
+        let boneAnimAtlas = SKTextureAtlas(named: "boneAnim")
+        var boneAnimFrames: [SKTexture] = []
+        let numImages = boneAnimAtlas.textureNames.count
+        for i in 1...numImages {
+            let boneAnimTextureName = "boneAnim\(i)"
+            boneAnimFrames.append(boneAnimAtlas.textureNamed(boneAnimTextureName))
+        }
+        boneAnimationFrames = boneAnimFrames
+        firstFrameTexture = boneAnimationFrames[0]
+        let setAnimTexture = SKAction.setTexture(firstFrameTexture, resize: false)
+        boneAnimNode.run(setAnimTexture)
+        boneAnimNode.setScale(1.4)
+        boneAnimNode.position = CGPoint(x: frame.midX, y: frame.midY + 30)
+        scene?.addChild(boneAnimNode)
+        boneAnimNode.run(SKAction.repeatForever(SKAction.animate(with: boneAnimationFrames, timePerFrame: 0.15, resize: false, restore: false)))
     }
     
     func setupSoap(){
