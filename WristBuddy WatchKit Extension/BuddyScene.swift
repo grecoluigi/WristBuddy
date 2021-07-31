@@ -11,9 +11,11 @@ import SpriteKit
 class BuddyScene: SKScene {
     var labelNode = SKLabelNode()
     var testNode = SKSpriteNode()
-    var lion = SKSpriteNode()
-    var lionRestingFrames: [SKTexture] = []
-    var lionWavingFrames: [SKTexture] = []
+    var dog = SKSpriteNode()
+    var dogRestingFrames: [SKTexture] = []
+    var dogWavingFrames: [SKTexture] = []
+    var dogBathFrames: [SKTexture] = []
+    var dogBoneEatingFrames: [SKTexture] = []
     var boneAnimationFrames: [SKTexture] = []
     var firstFrameTexture = SKTexture()
     var boneNode = SKSpriteNode()
@@ -24,8 +26,8 @@ class BuddyScene: SKScene {
     
     override func sceneDidLoad() {
         setupRestingAnimation()
-        restLion()
-        scene?.addChild(lion)
+        restDog()
+        scene?.addChild(dog)
         setupBone()
         setupSoap()
         setupBall()
@@ -52,9 +54,28 @@ class BuddyScene: SKScene {
         let setAnimTexture = SKAction.setTexture(firstFrameTexture, resize: false)
         boneAnimNode.run(setAnimTexture)
         boneAnimNode.setScale(1.4)
-        boneAnimNode.position = CGPoint(x: frame.midX, y: frame.midY + 30)
+        boneAnimNode.position = CGPoint(x: frame.midX, y: frame.midY + 20)
         scene?.addChild(boneAnimNode)
-        boneAnimNode.run(SKAction.animate(with: boneAnimationFrames, timePerFrame: 0.15, resize: false, restore: false), completion: boneAnimNode.removeFromParent)
+        boneAnimNode.run(SKAction.animate(with: boneAnimationFrames, timePerFrame: 0.15, resize: false, restore: false), completion: boneEatingAnim)
+    }
+    
+    func boneEatingAnim() {
+        boneAnimNode.removeFromParent()
+        dog.removeAllActions()
+        let dogBonEatingAtlas = SKTextureAtlas(named: "boneEating")
+        var boneEatingFrames: [SKTexture] = []
+        let numImages = dogBonEatingAtlas.textureNames.count
+        for i in 1...numImages {
+            let dogBoneEatingTextureName = "boneEating\(i)"
+            boneEatingFrames.append(dogBonEatingAtlas.textureNamed(dogBoneEatingTextureName))
+        }
+        dogBoneEatingFrames = boneEatingFrames
+        firstFrameTexture = dogBoneEatingFrames[0]
+        let setBoneEatingTexture = SKAction.setTexture(firstFrameTexture, resize: false)
+        dog.run(setBoneEatingTexture)
+        dog.run(SKAction.repeat(SKAction.animate(with: dogBoneEatingFrames, timePerFrame: 0.2, resize: false, restore: false), count: 6), completion: {
+            self.restDog()
+        })
     }
     
     func setupSoap(){
@@ -75,58 +96,77 @@ class BuddyScene: SKScene {
     }
     
     func setupRestingAnimation(){
-        lion.removeAllActions()
+        dog.removeAllActions()
         let lionRestingAtlas = SKTextureAtlas(named: "lionWaving")
         var restFrames: [SKTexture] = []
         for i in 1...3 {
             let lionTextureName = "lionWaving\(i)"
             restFrames.append(lionRestingAtlas.textureNamed(lionTextureName))
         }
-        lionRestingFrames = restFrames
-        firstFrameTexture = lionRestingFrames[0]
+        dogRestingFrames = restFrames
+        firstFrameTexture = dogRestingFrames[0]
         let setRestTexture = SKAction.setTexture(firstFrameTexture, resize: false)
-        lion.run(setRestTexture)
-        lion.position = CGPoint(x: frame.midX, y: frame.midY - 10)
+        dog.run(setRestTexture)
+        dog.position = CGPoint(x: frame.midX, y: frame.midY - 10)
     }
     
-    func restLion(){
+    func restDog(){
         
         setupRestingAnimation()
-        lion.run(SKAction.repeatForever(SKAction.animate(with: lionRestingFrames, timePerFrame: 0.3, resize: false, restore: false)), withKey: "restingLion")
+        dog.run(SKAction.repeatForever(SKAction.animate(with: dogRestingFrames, timePerFrame: 0.3, resize: false, restore: false)), withKey: "restingLion")
         
     }
-    func waveLion(){
-        lion.removeAllActions()
-        let lionWavingAtlas = SKTextureAtlas(named: "lionWaving")
+    func waveDog(){
+        dog.removeAllActions()
+        let dogWavingAtlas = SKTextureAtlas(named: "lionWaving")
         var waveFrames: [SKTexture] = []
-        let numImages = lionWavingAtlas.textureNames.count
+        let numImages = dogWavingAtlas.textureNames.count
         for i in 4...numImages {
-            let lionTextureName = "lionWaving\(i)"
-            waveFrames.append(lionWavingAtlas.textureNamed(lionTextureName))
+            let dogTextureName = "lionWaving\(i)"
+            waveFrames.append(dogWavingAtlas.textureNamed(dogTextureName))
         }
         // Reverse the animation loop
         for i in stride(from: numImages, to: 1, by: -1) {
             let lionTextureName = "lionWaving\(i)"
-            waveFrames.append(lionWavingAtlas.textureNamed(lionTextureName))
+            waveFrames.append(dogWavingAtlas.textureNamed(lionTextureName))
         }
-        lionWavingFrames = waveFrames
-        firstFrameTexture = lionWavingFrames[0]
+        dogWavingFrames = waveFrames
+        firstFrameTexture = dogWavingFrames[0]
         let setWaveTexture = SKAction.setTexture(firstFrameTexture, resize: false)
-        lion.run(setWaveTexture)
-        lion.run(SKAction.repeat(SKAction.animate(with: lionWavingFrames, timePerFrame: 0.2, resize: false, restore: false), count: 1), completion: {
-            self.restLion()
+        dog.run(setWaveTexture)
+        dog.run(SKAction.repeat(SKAction.animate(with: dogWavingFrames, timePerFrame: 0.2, resize: false, restore: false), count: 1), completion: {
+            self.restDog()
+        })
+
+    }
+    
+    func bathDog(){
+        dog.removeAllActions()
+        let dogBathAtlas = SKTextureAtlas(named: "dogBath")
+        var bathFrames: [SKTexture] = []
+        let numImages = dogBathAtlas.textureNames.count
+        for i in 1...numImages {
+            let dogTextureName = "dogBath\(i)"
+            bathFrames.append(dogBathAtlas.textureNamed(dogTextureName))
+        }
+        dogBathFrames = bathFrames
+        firstFrameTexture = dogBathFrames[0]
+        let setBathTexture = SKAction.setTexture(firstFrameTexture, resize: false)
+        dog.run(setBathTexture)
+        dog.run(SKAction.repeat(SKAction.animate(with: dogBathFrames, timePerFrame: 0.2, resize: false, restore: false), count: 8), completion: {
+            self.restDog()
         })
 
     }
     
     func didTap(atPosition: CGPoint) {
         let hitNodes = self.nodes(at: atPosition)
-        if hitNodes.contains(lion) {
-            waveLion()
+        if hitNodes.contains(dog) {
+            waveDog()
         } else if hitNodes.contains(boneNode) {
             setupBoneAnim()
         } else if hitNodes.contains(soapNode) {
-            print("Washing!")
+            bathDog()
         } else if hitNodes.contains(ballNode) {
             print("Let's play")
         }
