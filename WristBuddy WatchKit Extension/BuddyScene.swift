@@ -29,7 +29,6 @@ class BuddyScene: SKScene {
         setupBone()
         setupSoap()
         setupBall()
-        setupBoneAnim()
     }
     
     func setupBone(){
@@ -55,7 +54,7 @@ class BuddyScene: SKScene {
         boneAnimNode.setScale(1.4)
         boneAnimNode.position = CGPoint(x: frame.midX, y: frame.midY + 30)
         scene?.addChild(boneAnimNode)
-        boneAnimNode.run(SKAction.repeatForever(SKAction.animate(with: boneAnimationFrames, timePerFrame: 0.15, resize: false, restore: false)))
+        boneAnimNode.run(SKAction.animate(with: boneAnimationFrames, timePerFrame: 0.15, resize: false, restore: false), completion: boneAnimNode.removeFromParent)
     }
     
     func setupSoap(){
@@ -125,7 +124,7 @@ class BuddyScene: SKScene {
         if hitNodes.contains(lion) {
             waveLion()
         } else if hitNodes.contains(boneNode) {
-            print("Gave bone")
+            setupBoneAnim()
         } else if hitNodes.contains(soapNode) {
             print("Washing!")
         } else if hitNodes.contains(ballNode) {
