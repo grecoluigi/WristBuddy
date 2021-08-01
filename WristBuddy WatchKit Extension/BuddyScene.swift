@@ -17,11 +17,13 @@ class BuddyScene: SKScene {
     var dogBathFrames: [SKTexture] = []
     var dogBoneEatingFrames: [SKTexture] = []
     var boneAnimationFrames: [SKTexture] = []
+    var ballAnimationFrames: [SKTexture] = []
     var firstFrameTexture = SKTexture()
     var boneNode = SKSpriteNode()
     var soapNode = SKSpriteNode()
     var ballNode = SKSpriteNode()
     var boneAnimNode = SKSpriteNode()
+    var ballAnimNode = SKSpriteNode()
     let objectsAtlas = SKTextureAtlas(named: "objects")
     
     override func sceneDidLoad() {
@@ -57,6 +59,23 @@ class BuddyScene: SKScene {
         boneAnimNode.position = CGPoint(x: frame.midX, y: frame.midY + 20)
         scene?.addChild(boneAnimNode)
         boneAnimNode.run(SKAction.animate(with: boneAnimationFrames, timePerFrame: 0.15, resize: false, restore: false), completion: boneEatingAnim)
+    }
+    
+    func setupBallAnim(){
+        let ballAnimAtlas = SKTextureAtlas(named: "ballAnim")
+        var ballAnimFrames: [SKTexture] = []
+        let numImages = ballAnimAtlas.textureNames.count
+        for i in 1...numImages {
+            let ballAnimTextureName = "ballAnim\(i)"
+            ballAnimFrames.append(ballAnimAtlas.textureNamed(ballAnimTextureName))
+        }
+        ballAnimationFrames = ballAnimFrames
+        firstFrameTexture = ballAnimationFrames[0]
+        let setAnimTexture = SKAction.setTexture(firstFrameTexture, resize: false)
+        ballAnimNode.run(setAnimTexture)
+        ballAnimNode.position = CGPoint(x: frame.midX, y: frame.midY + 20)
+        scene?.addChild(ballAnimNode)
+        ballAnimNode.run(SKAction.animate(with: ballAnimationFrames, timePerFrame: 0.15, resize: false, restore: false), completion: ballAnimNode.removeFromParent)
     }
     
     func boneEatingAnim() {
@@ -168,7 +187,7 @@ class BuddyScene: SKScene {
         } else if hitNodes.contains(soapNode) {
             bathDog()
         } else if hitNodes.contains(ballNode) {
-            print("Let's play")
+            setupBallAnim()
         }
         
     }
