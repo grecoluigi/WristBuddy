@@ -23,6 +23,8 @@
 		819F909426AB372000465F1A /* BuddyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F909326AB372000465F1A /* BuddyScene.swift */; };
 		823FE3C326B6816300C1A764 /* ballAnim.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 823FE3C226B6816300C1A764 /* ballAnim.atlas */; };
 		823FE3C426B6816300C1A764 /* ballAnim.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 823FE3C226B6816300C1A764 /* ballAnim.atlas */; };
+		8261BC3826BAF2D100311AEF /* ballPlaying.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8261BC3726BAF2D100311AEF /* ballPlaying.atlas */; };
+		8261BC3926BAF2D100311AEF /* ballPlaying.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8261BC3726BAF2D100311AEF /* ballPlaying.atlas */; };
 		8285BD4C26B4576700435B5B /* boneAnim.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8285BD4B26B4576700435B5B /* boneAnim.atlas */; };
 		8285BD5026B4597000435B5B /* boneAnim.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8285BD4B26B4576700435B5B /* boneAnim.atlas */; };
 		829F1DFC26B2F4B90024C766 /* objects.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 829F1DFB26B2F4B90024C766 /* objects.atlas */; };
@@ -31,6 +33,8 @@
 		82B8D08C26B5972000015CE7 /* dogBath.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 82B8D08A26B5972000015CE7 /* dogBath.atlas */; };
 		82B8D09026B5972300015CE7 /* dogBath.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 82B8D08A26B5972000015CE7 /* dogBath.atlas */; };
 		82B8D09426B5972800015CE7 /* boneEating.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 82B8D08926B5972000015CE7 /* boneEating.atlas */; };
+		82C034C126B712D400C4F320 /* bubbles.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 82C034C026B712D300C4F320 /* bubbles.atlas */; };
+		82C034C226B712D400C4F320 /* bubbles.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 82C034C026B712D300C4F320 /* bubbles.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,10 +98,12 @@
 		819F909326AB372000465F1A /* BuddyScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyScene.swift; sourceTree = "<group>"; };
 		823FE3C226B6816300C1A764 /* ballAnim.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ballAnim.atlas; sourceTree = "<group>"; };
 		823FE3C826B683BB00C1A764 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		8261BC3726BAF2D100311AEF /* ballPlaying.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ballPlaying.atlas; sourceTree = "<group>"; };
 		8285BD4B26B4576700435B5B /* boneAnim.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = boneAnim.atlas; sourceTree = "<group>"; };
 		829F1DFB26B2F4B90024C766 /* objects.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = objects.atlas; sourceTree = "<group>"; };
 		82B8D08926B5972000015CE7 /* boneEating.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = boneEating.atlas; sourceTree = "<group>"; };
 		82B8D08A26B5972000015CE7 /* dogBath.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = dogBath.atlas; sourceTree = "<group>"; };
+		82C034C026B712D300C4F320 /* bubbles.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bubbles.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +142,8 @@
 			children = (
 				819F906926AB2F4200465F1A /* Interface.storyboard */,
 				819F906C26AB2F4200465F1A /* Assets.xcassets */,
+				8261BC3726BAF2D100311AEF /* ballPlaying.atlas */,
+				82C034C026B712D300C4F320 /* bubbles.atlas */,
 				823FE3C226B6816300C1A764 /* ballAnim.atlas */,
 				82B8D08926B5972000015CE7 /* boneEating.atlas */,
 				82B8D08A26B5972000015CE7 /* dogBath.atlas */,
@@ -272,11 +280,13 @@
 				819F906D26AB2F4200465F1A /* Assets.xcassets in Resources */,
 				823FE3C326B6816300C1A764 /* ballAnim.atlas in Resources */,
 				82B8D08B26B5972000015CE7 /* boneEating.atlas in Resources */,
+				82C034C126B712D400C4F320 /* bubbles.atlas in Resources */,
 				81790BE126B264B70031181B /* lionWaving.atlas in Resources */,
 				82B8D08C26B5972000015CE7 /* dogBath.atlas in Resources */,
 				829F1DFC26B2F4B90024C766 /* objects.atlas in Resources */,
 				819F906B26AB2F4200465F1A /* Interface.storyboard in Resources */,
 				8285BD4C26B4576700435B5B /* boneAnim.atlas in Resources */,
+				8261BC3826BAF2D100311AEF /* ballPlaying.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8285BD5026B4597000435B5B /* boneAnim.atlas in Resources */,
+				8261BC3926BAF2D100311AEF /* ballPlaying.atlas in Resources */,
 				823FE3C426B6816300C1A764 /* ballAnim.atlas in Resources */,
 				829F1DFD26B2F4B90024C766 /* objects.atlas in Resources */,
 				819F909226AB31B800465F1A /* Buddy.sks in Resources */,
@@ -293,6 +304,7 @@
 				8189C31926AEC296001B5C9E /* Assets.xcassets in Resources */,
 				819F908126AB2F4300465F1A /* Assets.xcassets in Resources */,
 				82B8D09426B5972800015CE7 /* boneEating.atlas in Resources */,
+				82C034C226B712D400C4F320 /* bubbles.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
