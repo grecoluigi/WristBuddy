@@ -50,8 +50,6 @@ class BuddyScene: SKScene {
         }
     }
     
-    
-    
     func setupBoneAnim(){
         if checkForNode(named: "boneAnimNode") == false {
         let boneAnimAtlas = SKTextureAtlas(named: "boneAnim")
@@ -256,5 +254,3 @@ class BuddyScene: SKScene {
         super.update(currentTime)
     }
 }
-
-
