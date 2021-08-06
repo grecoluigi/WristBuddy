@@ -41,10 +41,19 @@ class BuddyScene: SKScene {
         scene?.addChild(boneNode)
     }
     
-    func setupBoneAnim(){
-        if (childNode(withName: "boneAnimNode") as! SKSpriteNode?) != nil {
+    func checkForNode(named: String) -> Bool {
+        if (childNode(withName: named) as! SKSpriteNode?) != nil {
             print("Node is already present, wait for animation to finish")
+            return true
         } else {
+            return false
+        }
+    }
+    
+    
+    
+    func setupBoneAnim(){
+        if checkForNode(named: "boneAnimNode") == false {
         let boneAnimAtlas = SKTextureAtlas(named: "boneAnim")
         let numImages = boneAnimAtlas.textureNames.count
         objectAnimationFrames.removeAll()
@@ -64,9 +73,7 @@ class BuddyScene: SKScene {
     }
 
     func setupBubblesAnim1(){
-        if (childNode(withName: "bubblesNode") as! SKSpriteNode?) != nil {
-            print("Node is already present, wait for animation to finish")
-        } else {
+        if checkForNode(named: "bubblesNode") == false {
             objectAnimationFrames.removeAll()
         for i in 1...6 {
             let bubblesTextureName = "bubbles\(i)"
@@ -79,7 +86,6 @@ class BuddyScene: SKScene {
         scene?.addChild(bubblesNode)
         bubblesNode.name = "bubblesNode"
         bubblesNode.run(SKAction.animate(with: objectAnimationFrames, timePerFrame: 0.15, resize: false, restore: false), completion: setupBubblesAnim2)
-        
         }
     }
     
@@ -102,24 +108,22 @@ class BuddyScene: SKScene {
     }
     
     func setupBallAnim(){
-        if (childNode(withName: "ballAnimNode") as! SKSpriteNode?) != nil {
-            print("Node is already present, wait for animation to finish")
-        } else {
-        let ballAnimAtlas = SKTextureAtlas(named: "ballAnim")
-            objectAnimationFrames.removeAll()
-        let numImages = ballAnimAtlas.textureNames.count
-        for i in 1...numImages {
-            let ballAnimTextureName = "ballAnim\(i)"
-            objectAnimationFrames.append(ballAnimAtlas.textureNamed(ballAnimTextureName))
+        if checkForNode(named: "ballAnimNode") == false {
+            let ballAnimAtlas = SKTextureAtlas(named: "ballAnim")
+                objectAnimationFrames.removeAll()
+            let numImages = ballAnimAtlas.textureNames.count
+            for i in 1...numImages {
+                let ballAnimTextureName = "ballAnim\(i)"
+                objectAnimationFrames.append(ballAnimAtlas.textureNamed(ballAnimTextureName))
+            }
+            firstFrameTexture = objectAnimationFrames[0]
+            let setAnimTexture = SKAction.setTexture(firstFrameTexture, resize: false)
+            ballAnimNode.run(setAnimTexture)
+            ballAnimNode.position = CGPoint(x: frame.midX, y: frame.midY - 40)
+            scene?.addChild(ballAnimNode)
+            ballAnimNode.name = "ballAnimNode"
+            ballAnimNode.run(SKAction.animate(with: objectAnimationFrames, timePerFrame: 0.15, resize: false, restore: false), completion: ballAnim)
         }
-        firstFrameTexture = objectAnimationFrames[0]
-        let setAnimTexture = SKAction.setTexture(firstFrameTexture, resize: false)
-        ballAnimNode.run(setAnimTexture)
-        ballAnimNode.position = CGPoint(x: frame.midX, y: frame.midY - 40)
-        scene?.addChild(ballAnimNode)
-        ballAnimNode.name = "ballAnimNode"
-        ballAnimNode.run(SKAction.animate(with: objectAnimationFrames, timePerFrame: 0.15, resize: false, restore: false), completion: ballAnim)
-    }
     }
     
     func ballAnim(){
