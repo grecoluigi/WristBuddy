@@ -110,14 +110,15 @@ class BuddyScene: SKScene {
             let ballAnimAtlas = SKTextureAtlas(named: "ballAnim")
                 objectAnimationFrames.removeAll()
             let numImages = ballAnimAtlas.textureNames.count
-            for i in 1...numImages {
+            //TODO Replace 5 with numImages or delete frame - testing the animation
+            for i in 1...5 {
                 let ballAnimTextureName = "ballAnim\(i)"
                 objectAnimationFrames.append(ballAnimAtlas.textureNamed(ballAnimTextureName))
             }
             firstFrameTexture = objectAnimationFrames[0]
             let setAnimTexture = SKAction.setTexture(firstFrameTexture, resize: false)
             ballAnimNode.run(setAnimTexture)
-            ballAnimNode.position = CGPoint(x: frame.midX, y: frame.midY - 40)
+            ballAnimNode.position = CGPoint(x: frame.midX, y: frame.midY + 10 )
             scene?.addChild(ballAnimNode)
             ballAnimNode.name = "ballAnimNode"
             ballAnimNode.run(SKAction.animate(with: objectAnimationFrames, timePerFrame: 0.15, resize: false, restore: false), completion: ballAnim)
