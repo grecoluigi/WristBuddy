@@ -9,10 +9,10 @@ import WatchKit
 import SpriteKit
 
 class BuddyScene: SKScene {
+    var numImages = Int()
     var dog = SKSpriteNode()
     var buddyActionFrames: [SKTexture] = []
     var objectAnimationFrames: [SKTexture] = []
-    var ballPlayingFrames: [SKTexture] = []
     var firstFrameTexture = SKTexture()
     var boneNode = SKSpriteNode()
     var soapNode = SKSpriteNode()
@@ -20,10 +20,13 @@ class BuddyScene: SKScene {
     var boneAnimNode = SKSpriteNode()
     var bubblesNode = SKSpriteNode()
     var ballAnimNode = SKSpriteNode()
+    var background = SKSpriteNode()
     let objectsAtlas = SKTextureAtlas(named: "objects")
     let bubblesAtlas = SKTextureAtlas(named: "bubbles")
+    let dogJumpAtlas = SKTextureAtlas(named: "dogJump")
     
     override func sceneDidLoad() {
+        addBackground()
         bubblesNode.name = "bubblesNode"
         setupRestingAnimation()
         restDog()
@@ -31,6 +34,31 @@ class BuddyScene: SKScene {
         setupBone()
         setupSoap()
         setupBall()
+    }
+    
+    func addBackground(){
+        let date = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        let minutes = calendar.component(.minute, from: date)
+        switch hour {
+        case 1:
+            print("È l'una")
+        case 2:
+            print("Sono le due")
+        default:
+            print("Non so che ora sia")
+        }
+        if (hour < 12) {
+            print ("è mattina")
+        } else {
+            print ("è sera")
+
+        }
+        let backgroundFrame = objectsAtlas.textureNamed("background")
+        let setBackground = SKAction.setTexture(backgroundFrame, resize: false)
+        background.run(setBackground)
+        scene?.addChild(background)
     }
     
     func setupBone(){
@@ -53,7 +81,7 @@ class BuddyScene: SKScene {
     func setupBoneAnim(){
         if checkForNode(named: "boneAnimNode") == false {
         let boneAnimAtlas = SKTextureAtlas(named: "boneAnim")
-        let numImages = boneAnimAtlas.textureNames.count
+        numImages = boneAnimAtlas.textureNames.count
         objectAnimationFrames.removeAll()
         for i in 1...numImages {
             let boneAnimTextureName = "boneAnim\(i)"
@@ -94,7 +122,7 @@ class BuddyScene: SKScene {
         let bathFrame = dogBathAtlas.textureNamed("dogBath1")
         let setBathTexture = SKAction.setTexture(bathFrame, resize: false)
         dog.run(setBathTexture)
-        let numImages = bubblesAtlas.textureNames.count
+        numImages = bubblesAtlas.textureNames.count
         for i in 7...numImages {
             let bubblesTextureName = "bubbles\(i)"
             objectAnimationFrames.append(bubblesAtlas.textureNamed(bubblesTextureName))
@@ -107,38 +135,46 @@ class BuddyScene: SKScene {
     
     func setupBallAnim(){
         if checkForNode(named: "ballAnimNode") == false {
-            let ballAnimAtlas = SKTextureAtlas(named: "ballAnim")
-                objectAnimationFrames.removeAll()
-            let numImages = ballAnimAtlas.textureNames.count
-            //TODO Replace 5 with numImages or delete frame - testing the animation
-            for i in 1...5 {
-                let ballAnimTextureName = "ballAnim\(i)"
-                objectAnimationFrames.append(ballAnimAtlas.textureNamed(ballAnimTextureName))
+            numImages = dogJumpAtlas.textureNames.count
+            buddyActionFrames.removeAll()
+            for i in 1...numImages {
+                let dogJumpTextureName = "dogJump\(i)"
+                buddyActionFrames.append(dogJumpAtlas.textureNamed(dogJumpTextureName))
             }
-            firstFrameTexture = objectAnimationFrames[0]
-            let setAnimTexture = SKAction.setTexture(firstFrameTexture, resize: false)
-            ballAnimNode.run(setAnimTexture)
-            ballAnimNode.position = CGPoint(x: frame.midX, y: frame.midY + 10 )
-            scene?.addChild(ballAnimNode)
-            ballAnimNode.name = "ballAnimNode"
-            ballAnimNode.run(SKAction.animate(with: objectAnimationFrames, timePerFrame: 0.15, resize: false, restore: false), completion: ballAnim)
+            dog.run(SKAction.animate(with: buddyActionFrames, timePerFrame: 0.15, resize: false, restore: false), completion: setDogTexture)
         }
+    }
+    
+    func setDogTexture(){
+        dog.removeAllActions()
+        dog.run(SKAction.setTexture(dogJumpAtlas.textureNamed("dogJump4")), completion: setupBallAnim2)
+    }
+    
+    func setupBallAnim2(){
+        let ballAnimAtlas = SKTextureAtlas(named: "ballAnim")
+        objectAnimationFrames.removeAll()
+        numImages = ballAnimAtlas.textureNames.count
+        for i in 1...numImages {
+            let ballAnimTextureName = "ballAnim\(i)"
+            objectAnimationFrames.append(ballAnimAtlas.textureNamed(ballAnimTextureName))
+        }
+        scene?.addChild(ballAnimNode)
+        ballAnimNode.run(SKAction.setTexture(objectAnimationFrames[0], resize: false))
+        ballAnimNode.name = "ballAnimNode"
+        ballAnimNode.run(SKAction.animate(with: objectAnimationFrames, timePerFrame: 0.15, resize: false, restore: true), completion: ballAnim)
     }
     
     func ballAnim(){
         ballAnimNode.removeFromParent()
-        ballPlayingFrames.removeAll()
+        buddyActionFrames.removeAll()
         let ballPlayingAtlas = SKTextureAtlas(named: "ballPlaying")
-        let numImages = ballPlayingAtlas.textureNames.count
+        numImages = ballPlayingAtlas.textureNames.count
         for i in 1...numImages {
             let ballPlayingTextureName = "ballPlaying\(i)"
-            ballPlayingFrames.append(ballPlayingAtlas.textureNamed(ballPlayingTextureName))
+            buddyActionFrames.append(ballPlayingAtlas.textureNamed(ballPlayingTextureName))
         }
-        firstFrameTexture = ballPlayingFrames[0]
-        let setBallAnimTexture = SKAction.setTexture(firstFrameTexture, resize: false)
-        dog.run(setBallAnimTexture)
-        dog.run(SKAction.animate(with: ballPlayingFrames, timePerFrame: 0.15, resize: false, restore: true))
-        
+            dog.run(SKAction.setTexture(buddyActionFrames[0], resize: false))
+        dog.run(SKAction.repeat(SKAction.animate(with: buddyActionFrames, timePerFrame: 0.15), count: 3), completion: restDog)
     }
     
     func boneEatingAnim() {
@@ -146,7 +182,7 @@ class BuddyScene: SKScene {
         dog.removeAllActions()
         buddyActionFrames.removeAll()
         let dogBonEatingAtlas = SKTextureAtlas(named: "boneEating")
-        let numImages = dogBonEatingAtlas.textureNames.count
+        numImages = dogBonEatingAtlas.textureNames.count
         for i in 1...numImages {
             let dogBoneEatingTextureName = "boneEating\(i)"
             buddyActionFrames.append(dogBonEatingAtlas.textureNamed(dogBoneEatingTextureName))
@@ -193,13 +229,13 @@ class BuddyScene: SKScene {
     func restDog(){
         setupRestingAnimation()
         dog.run(SKAction.repeatForever(SKAction.animate(with: buddyActionFrames, timePerFrame: 0.3, resize: false, restore: false)), withKey: "restingLion")
-        
     }
+    
     func waveDog(){
         dog.removeAllActions()
         buddyActionFrames.removeAll()
         let dogWavingAtlas = SKTextureAtlas(named: "lionWaving")
-        let numImages = dogWavingAtlas.textureNames.count
+        numImages = dogWavingAtlas.textureNames.count
         for i in 4...numImages {
             let dogTextureName = "lionWaving\(i)"
             buddyActionFrames.append(dogWavingAtlas.textureNamed(dogTextureName))
@@ -223,7 +259,7 @@ class BuddyScene: SKScene {
         buddyActionFrames.removeAll()
         dog.removeAllActions()
         let dogBathAtlas = SKTextureAtlas(named: "dogBath")
-        let numImages = dogBathAtlas.textureNames.count
+        numImages = dogBathAtlas.textureNames.count
         for i in 1...numImages {
             let dogTextureName = "dogBath\(i)"
             buddyActionFrames.append(dogBathAtlas.textureNamed(dogTextureName))
@@ -248,7 +284,6 @@ class BuddyScene: SKScene {
         } else if hitNodes.contains(ballNode) {
             setupBallAnim()
         }
-        
     }
     
     override func update(_ currentTime: TimeInterval) {

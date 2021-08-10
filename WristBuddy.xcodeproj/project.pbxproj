@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		81495D2E26C2C0250058E5C0 /* dogJump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 81495D2D26C2C0250058E5C0 /* dogJump.atlas */; };
+		81495D2F26C2C0250058E5C0 /* dogJump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 81495D2D26C2C0250058E5C0 /* dogJump.atlas */; };
 		81790BE126B264B70031181B /* lionWaving.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 81790BE026B264B70031181B /* lionWaving.atlas */; };
 		81790BE226B264B70031181B /* lionWaving.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 81790BE026B264B70031181B /* lionWaving.atlas */; };
 		8189C31926AEC296001B5C9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 819F906C26AB2F4200465F1A /* Assets.xcassets */; };
@@ -80,6 +82,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		81495D2D26C2C0250058E5C0 /* dogJump.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = dogJump.atlas; sourceTree = "<group>"; };
 		81790BE026B264B70031181B /* lionWaving.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = lionWaving.atlas; sourceTree = "<group>"; };
 		819F906026AB2F4100465F1A /* WristBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WristBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		819F906426AB2F4200465F1A /* WristBuddy WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WristBuddy WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +145,7 @@
 			children = (
 				819F906926AB2F4200465F1A /* Interface.storyboard */,
 				819F906C26AB2F4200465F1A /* Assets.xcassets */,
+				81495D2D26C2C0250058E5C0 /* dogJump.atlas */,
 				8261BC3726BAF2D100311AEF /* ballPlaying.atlas */,
 				82C034C026B712D300C4F320 /* bubbles.atlas */,
 				823FE3C226B6816300C1A764 /* ballAnim.atlas */,
@@ -280,6 +284,7 @@
 				819F906D26AB2F4200465F1A /* Assets.xcassets in Resources */,
 				823FE3C326B6816300C1A764 /* ballAnim.atlas in Resources */,
 				82B8D08B26B5972000015CE7 /* boneEating.atlas in Resources */,
+				81495D2E26C2C0250058E5C0 /* dogJump.atlas in Resources */,
 				82C034C126B712D400C4F320 /* bubbles.atlas in Resources */,
 				81790BE126B264B70031181B /* lionWaving.atlas in Resources */,
 				82B8D08C26B5972000015CE7 /* dogBath.atlas in Resources */,
@@ -296,6 +301,7 @@
 			files = (
 				8285BD5026B4597000435B5B /* boneAnim.atlas in Resources */,
 				8261BC3926BAF2D100311AEF /* ballPlaying.atlas in Resources */,
+				81495D2F26C2C0250058E5C0 /* dogJump.atlas in Resources */,
 				823FE3C426B6816300C1A764 /* ballAnim.atlas in Resources */,
 				829F1DFD26B2F4B90024C766 /* objects.atlas in Resources */,
 				819F909226AB31B800465F1A /* Buddy.sks in Resources */,
