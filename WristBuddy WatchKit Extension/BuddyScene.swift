@@ -9,6 +9,7 @@ import WatchKit
 import SpriteKit
 
 class BuddyScene: SKScene {
+    
     var numImages = Int()
     var dog = SKSpriteNode()
     var buddyActionFrames: [SKTexture] = []
@@ -21,12 +22,17 @@ class BuddyScene: SKScene {
     var bubblesNode = SKSpriteNode()
     var ballAnimNode = SKSpriteNode()
     var background = SKSpriteNode()
+    var foreground = SKSpriteNode()
+    var celestialObj = SKSpriteNode()
     let objectsAtlas = SKTextureAtlas(named: "objects")
     let bubblesAtlas = SKTextureAtlas(named: "bubbles")
     let dogJumpAtlas = SKTextureAtlas(named: "dogJump")
+    var setBackground = SKAction()
+    var setForeground = SKAction()
+    var setCelestial = SKAction()
     
     override func sceneDidLoad() {
-        addBackground()
+        setScene()
         bubblesNode.name = "bubblesNode"
         setupRestingAnimation()
         restDog()
@@ -36,29 +42,138 @@ class BuddyScene: SKScene {
         setupBall()
     }
     
-    func addBackground(){
+    func setScene(){
         let date = Date()
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)
-        let minutes = calendar.component(.minute, from: date)
+        var celestialPosition = CGPoint(x: 0, y: 0)
         switch hour {
+        case 5:
+            celestialPosition.x = -70
+            celestialPosition.y = 0
+            celestialObj.setScale(1.1)
+        case 6:
+            celestialPosition.x = -65
+            celestialPosition.y = 10
+            celestialObj.setScale(1.2)
+        case 7:
+            celestialPosition.x = -55
+            celestialPosition.y = 30
+            celestialObj.setScale(1.2)
+        case 8:
+            celestialPosition.x = -40
+            celestialPosition.y = 40
+            celestialObj.setScale(1.3)
+        case 9:
+            celestialPosition.x = -30
+            celestialPosition.y = 50
+            celestialObj.setScale(1.3)
+        case 10:
+            celestialPosition.x = -25
+            celestialPosition.y = 55
+            celestialObj.setScale(1.3)
+        case 11:
+            celestialPosition.x = -20
+            celestialPosition.y = 60
+            celestialObj.setScale(1.3)
+        case 12:
+            celestialPosition.x = 0
+            celestialPosition.y = 70
+            celestialObj.setScale(1.8)
+        case 13:
+            celestialPosition.x = 20
+            celestialPosition.y = 60
+            celestialObj.setScale(1.3)
+        case 14:
+            celestialPosition.x = 25
+            celestialPosition.y = 55
+            celestialObj.setScale(1.3)
+        case 15:
+            celestialPosition.x = 30
+            celestialPosition.y = 50
+            celestialObj.setScale(1.3)
+        case 16:
+            celestialPosition.x = 40
+            celestialPosition.y = 40
+            celestialObj.setScale(1.3)
+        case 17:
+            celestialPosition.x = 55
+            celestialPosition.y = 30
+            celestialObj.setScale(1.2)
+        case 18:
+            celestialPosition.x = 70
+            celestialPosition.y = 0
+            celestialObj.setScale(1)
+        case 19:
+            celestialPosition.x = -70
+            celestialPosition.y = 0
+            celestialObj.setScale(1)
+        case 20:
+            celestialPosition.x = -65
+            celestialPosition.y = 10
+            celestialObj.setScale(1.1)
+        case 21:
+            celestialPosition.x = -55
+            celestialPosition.y = 30
+            celestialObj.setScale(1.1)
+        case 22:
+            celestialPosition.x = -40
+            celestialPosition.y = 40
+            celestialObj.setScale(1.2)
+        case 23:
+            celestialPosition.x = -30
+            celestialPosition.y = 50
+            celestialObj.setScale(1.2)
+        case 24:
+            celestialPosition.x = -25
+            celestialPosition.y = 55
+            celestialObj.setScale(1.2)
         case 1:
-            print("È l'una")
+            celestialPosition.x = -20
+            celestialPosition.y = 60
+            celestialObj.setScale(1.2)
         case 2:
-            print("Sono le due")
+            celestialPosition.x = 40
+            celestialPosition.y = 40
+            celestialObj.setScale(1.2)
+        case 3:
+            celestialPosition.x = 55
+            celestialPosition.y = 30
+            celestialObj.setScale(1.1)
+        case 4:
+            celestialPosition.x = 70
+            celestialPosition.y = 0
+            celestialObj.setScale(1)
         default:
-            print("Non so che ora sia")
+            celestialPosition.x = 0
+            celestialPosition.y = 70
         }
-        if (hour < 12) {
+        celestialObj.position = celestialPosition
+        if (hour > 6 && hour < 18) {
+            addBackground(bgTexture: "skyDay", fgTexture: "grassDay", celestialTexture: "sun")
             print ("è mattina")
+        } else if (hour == 18 || hour == 19){
+            addBackground(bgTexture: "skyDay", fgTexture: "grassDay", celestialTexture: "moon")
+            print ("è tramonto")
+        } else if (hour == 5 || hour == 6) {
+            addBackground(bgTexture: "skyDay", fgTexture: "grassDay", celestialTexture: "sun")
+            print("è alba")
         } else {
-            print ("è sera")
-
+            addBackground(bgTexture: "skyNight", fgTexture: "grassNight", celestialTexture: "moon")
+            print ("è notte")
         }
-        let backgroundFrame = objectsAtlas.textureNamed("background")
-        let setBackground = SKAction.setTexture(backgroundFrame, resize: false)
+    }
+    
+    func addBackground(bgTexture: String, fgTexture: String, celestialTexture: String) {
+        setBackground = SKAction.setTexture(objectsAtlas.textureNamed(bgTexture), resize: false)
+        setForeground = SKAction.setTexture(objectsAtlas.textureNamed(fgTexture), resize: false)
+        setCelestial = SKAction.setTexture(objectsAtlas.textureNamed(celestialTexture), resize: false)
         background.run(setBackground)
         scene?.addChild(background)
+        celestialObj.run(setCelestial)
+        scene?.addChild(celestialObj)
+        foreground.run(setForeground)
+        scene?.addChild(foreground)
     }
     
     func setupBone(){
@@ -251,7 +366,6 @@ class BuddyScene: SKScene {
         dog.run(SKAction.repeat(SKAction.animate(with: buddyActionFrames, timePerFrame: 0.2, resize: false, restore: false), count: 1), completion: {
             self.restDog()
         })
-
     }
     
     func bathDog(){
@@ -270,7 +384,6 @@ class BuddyScene: SKScene {
         dog.run(SKAction.repeat(SKAction.animate(with: buddyActionFrames, timePerFrame: 0.2, resize: false, restore: false), count: 8), completion: {
             self.restDog()
         })
-
     }
     
     func didTap(atPosition: CGPoint) {
