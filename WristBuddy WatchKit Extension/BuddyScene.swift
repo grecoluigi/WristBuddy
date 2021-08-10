@@ -27,6 +27,7 @@ class BuddyScene: SKScene {
     let objectsAtlas = SKTextureAtlas(named: "objects")
     let bubblesAtlas = SKTextureAtlas(named: "bubbles")
     let dogJumpAtlas = SKTextureAtlas(named: "dogJump")
+    let ballPlayingAtlas = SKTextureAtlas(named: "ballPlaying")
     var setBackground = SKAction()
     var setForeground = SKAction()
     var setCelestial = SKAction()
@@ -149,14 +150,14 @@ class BuddyScene: SKScene {
             celestialPosition.y = 70
         }
         celestialObj.position = celestialPosition
-        if (hour > 6 && hour < 18) {
+        if (hour > 7 && hour < 18) {
             addBackground(bgTexture: "skyDay", fgTexture: "grassDay", celestialTexture: "sun")
             print ("è mattina")
-        } else if (hour == 18 || hour == 19){
-            addBackground(bgTexture: "skyDay", fgTexture: "grassDay", celestialTexture: "moon")
+        } else if (hour >= 18 && hour <= 20 ){
+            addBackground(bgTexture: "skySunset", fgTexture: "grassSunset", celestialTexture: "moon")
             print ("è tramonto")
-        } else if (hour == 5 || hour == 6) {
-            addBackground(bgTexture: "skyDay", fgTexture: "grassDay", celestialTexture: "sun")
+        } else if ( hour >= 5 && hour <= 7) {
+            addBackground(bgTexture: "skySunrise", fgTexture: "grassSunrise", celestialTexture: "sun")
             print("è alba")
         } else {
             addBackground(bgTexture: "skyNight", fgTexture: "grassNight", celestialTexture: "moon")
@@ -262,7 +263,7 @@ class BuddyScene: SKScene {
     
     func setDogTexture(){
         dog.removeAllActions()
-        dog.run(SKAction.setTexture(dogJumpAtlas.textureNamed("dogJump4")), completion: setupBallAnim2)
+        dog.run(SKAction.setTexture(dogJumpAtlas.textureNamed("dogJump4"), resize: true), completion: setupBallAnim2)
     }
     
     func setupBallAnim2(){
@@ -276,19 +277,21 @@ class BuddyScene: SKScene {
         scene?.addChild(ballAnimNode)
         ballAnimNode.run(SKAction.setTexture(objectAnimationFrames[0], resize: false))
         ballAnimNode.name = "ballAnimNode"
-        ballAnimNode.run(SKAction.animate(with: objectAnimationFrames, timePerFrame: 0.15, resize: false, restore: true), completion: ballAnim)
+        ballAnimNode.run(SKAction.animate(with: objectAnimationFrames, timePerFrame: 0.1, resize: false, restore: true), completion: ballAnim)
     }
     
     func ballAnim(){
         ballAnimNode.removeFromParent()
         buddyActionFrames.removeAll()
-        let ballPlayingAtlas = SKTextureAtlas(named: "ballPlaying")
         numImages = ballPlayingAtlas.textureNames.count
         for i in 1...numImages {
             let ballPlayingTextureName = "ballPlaying\(i)"
             buddyActionFrames.append(ballPlayingAtlas.textureNamed(ballPlayingTextureName))
         }
-            dog.run(SKAction.setTexture(buddyActionFrames[0], resize: false))
+        dog.removeAllActions()
+        dog.position = CGPoint(x: frame.midX, y: frame.midY - 17)
+        dog.run(SKAction.setTexture(ballPlayingAtlas.textureNamed("ballPlaying1"), resize: true))
+        dog.run(SKAction.setTexture(buddyActionFrames[0], resize: false))
         dog.run(SKAction.repeat(SKAction.animate(with: buddyActionFrames, timePerFrame: 0.15), count: 3), completion: restDog)
     }
     
