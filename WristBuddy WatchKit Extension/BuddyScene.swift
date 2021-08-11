@@ -111,7 +111,7 @@ class BuddyScene: SKScene {
             celestialPosition.y = 0
             celestialObj.setScale(1)
         case 20:
-            celestialPosition.x = -65
+            celestialPosition.x = 65
             celestialPosition.y = 10
             celestialObj.setScale(1.1)
         case 21:
@@ -126,12 +126,12 @@ class BuddyScene: SKScene {
             celestialPosition.x = -30
             celestialPosition.y = 50
             celestialObj.setScale(1.2)
-        case 24:
-            celestialPosition.x = -25
-            celestialPosition.y = 55
+        case 0:
+            celestialPosition.x = 0
+            celestialPosition.y = 70
             celestialObj.setScale(1.2)
         case 1:
-            celestialPosition.x = -20
+            celestialPosition.x = 20
             celestialPosition.y = 60
             celestialObj.setScale(1.2)
         case 2:
@@ -152,17 +152,17 @@ class BuddyScene: SKScene {
         }
         celestialObj.position = celestialPosition
         if (hour > 7 && hour < 18) {
+            // morning
             addBackground(bgTexture: "skyDay", fgTexture: "grassDay", celestialTexture: "sun")
-            print ("è mattina")
         } else if (hour >= 18 && hour <= 20 ){
-            addBackground(bgTexture: "skySunset", fgTexture: "grassSunset", celestialTexture: "moon")
-            print ("è tramonto")
+            // sunset
+            addBackground(bgTexture: "skySunset", fgTexture: "grassSunset", celestialTexture: "sun")
         } else if ( hour >= 5 && hour <= 7) {
+            // sunrise
             addBackground(bgTexture: "skySunrise", fgTexture: "grassSunrise", celestialTexture: "sun")
-            print("è alba")
         } else {
+            // night
             addBackground(bgTexture: "skyNight", fgTexture: "grassNight", celestialTexture: "moon")
-            print ("è notte")
         }
     }
     
