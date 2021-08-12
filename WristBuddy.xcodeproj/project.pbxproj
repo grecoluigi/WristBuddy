@@ -23,6 +23,10 @@
 		819F908126AB2F4300465F1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 819F908026AB2F4300465F1A /* Assets.xcassets */; };
 		819F909226AB31B800465F1A /* Buddy.sks in Resources */ = {isa = PBXBuildFile; fileRef = 819F909126AB31B800465F1A /* Buddy.sks */; };
 		819F909426AB372000465F1A /* BuddyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F909326AB372000465F1A /* BuddyScene.swift */; };
+		81EBEE9C26C53EF5003B773E /* screen3.png in Resources */ = {isa = PBXBuildFile; fileRef = 81EBEE9826C53EF5003B773E /* screen3.png */; };
+		81EBEE9D26C53EF5003B773E /* screen2.png in Resources */ = {isa = PBXBuildFile; fileRef = 81EBEE9926C53EF5003B773E /* screen2.png */; };
+		81EBEE9E26C53EF5003B773E /* screen1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 81EBEE9A26C53EF5003B773E /* screen1.gif */; };
+		81EBEE9F26C53EF5003B773E /* screen4.png in Resources */ = {isa = PBXBuildFile; fileRef = 81EBEE9B26C53EF5003B773E /* screen4.png */; };
 		823FE3C326B6816300C1A764 /* ballAnim.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 823FE3C226B6816300C1A764 /* ballAnim.atlas */; };
 		823FE3C426B6816300C1A764 /* ballAnim.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 823FE3C226B6816300C1A764 /* ballAnim.atlas */; };
 		8261BC3826BAF2D100311AEF /* ballPlaying.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8261BC3726BAF2D100311AEF /* ballPlaying.atlas */; };
@@ -99,6 +103,10 @@
 		819F908326AB2F4300465F1A /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		819F909126AB31B800465F1A /* Buddy.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Buddy.sks; sourceTree = "<group>"; };
 		819F909326AB372000465F1A /* BuddyScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyScene.swift; sourceTree = "<group>"; };
+		81EBEE9826C53EF5003B773E /* screen3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen3.png; sourceTree = "<group>"; };
+		81EBEE9926C53EF5003B773E /* screen2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen2.png; sourceTree = "<group>"; };
+		81EBEE9A26C53EF5003B773E /* screen1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = screen1.gif; sourceTree = "<group>"; };
+		81EBEE9B26C53EF5003B773E /* screen4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen4.png; sourceTree = "<group>"; };
 		823FE3C226B6816300C1A764 /* ballAnim.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ballAnim.atlas; sourceTree = "<group>"; };
 		823FE3C826B683BB00C1A764 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8261BC3726BAF2D100311AEF /* ballPlaying.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ballPlaying.atlas; sourceTree = "<group>"; };
@@ -123,6 +131,7 @@
 		819F905926AB2F4100465F1A = {
 			isa = PBXGroup;
 			children = (
+				81EBEE9426C534E7003B773E /* Screenshots */,
 				823FE3C826B683BB00C1A764 /* README.md */,
 				819F906826AB2F4200465F1A /* WristBuddy WatchKit App */,
 				819F907726AB2F4200465F1A /* WristBuddy WatchKit Extension */,
@@ -173,6 +182,17 @@
 				819F909126AB31B800465F1A /* Buddy.sks */,
 			);
 			path = "WristBuddy WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		81EBEE9426C534E7003B773E /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				81EBEE9A26C53EF5003B773E /* screen1.gif */,
+				81EBEE9926C53EF5003B773E /* screen2.png */,
+				81EBEE9826C53EF5003B773E /* screen3.png */,
+				81EBEE9B26C53EF5003B773E /* screen4.png */,
+			);
+			path = Screenshots;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,6 +294,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81EBEE9D26C53EF5003B773E /* screen2.png in Resources */,
+				81EBEE9E26C53EF5003B773E /* screen1.gif in Resources */,
+				81EBEE9F26C53EF5003B773E /* screen4.png in Resources */,
+				81EBEE9C26C53EF5003B773E /* screen3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

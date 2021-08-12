@@ -22,6 +22,8 @@ class InterfaceController: WKInterfaceController {
     }
     
     override func willActivate() {
+        scene?.removeChildren(in: [scene!.background, scene!.celestialObj, scene!.foreground])
+        scene?.redrawBackground()
         // This method is called when watch view controller is about to be visible to user
     }
     

@@ -44,6 +44,14 @@ class BuddyScene: SKScene {
         setupBall()
     }
     
+    func redrawBackground(){
+        setScene()
+        background.zPosition = -3
+        celestialObj.zPosition = -2
+        foreground.zPosition = -1
+    }
+    
+    
     func setScene(){
         let date = Date()
         let calendar = Calendar.current
@@ -316,56 +324,6 @@ class BuddyScene: SKScene {
             dog.run(sequence)
 
     }
-    
-    
-    
-//    func setupBallAnim(){
-//        if checkForNode(named: "ballAnimNode") == false {
-//            numImages = dogJumpAtlas.textureNames.count
-//            buddyActionFrames.removeAll()
-//            for i in 1...numImages {
-//                let dogJumpTextureName = "dogJump\(i)"
-//                buddyActionFrames.append(dogJumpAtlas.textureNamed(dogJumpTextureName))
-//            }
-//            dog.run(SKAction.animate(with: buddyActionFrames, timePerFrame: 0.15, resize: false, restore: false), completion: setDogTexture)
-//        }
-//    }
-//
-//    func setDogTexture(){
-//        dog.removeAllActions()
-//        dog.run(SKAction.setTexture(dogJumpAtlas.textureNamed("dogJump4"), resize: true), completion: setupBallAnim2)
-//    }
-//
-//    func setupBallAnim2(){
-//        let ballAnimAtlas = SKTextureAtlas(named: "ballAnim")
-//        objectAnimationFrames.removeAll()
-//        numImages = ballAnimAtlas.textureNames.count
-//        for i in 1...numImages {
-//            let ballAnimTextureName = "ballAnim\(i)"
-//            objectAnimationFrames.append(ballAnimAtlas.textureNamed(ballAnimTextureName))
-//        }
-//        scene?.addChild(ballAnimNode)
-//        ballAnimNode.run(SKAction.setTexture(objectAnimationFrames[0], resize: false))
-//        ballAnimNode.name = "ballAnimNode"
-//        ballAnimNode.run(SKAction.animate(with: objectAnimationFrames, timePerFrame: 0.1, resize: false, restore: true), completion: ballAnim)
-//    }
-//
-//    func ballAnim(){
-//        ballAnimNode.removeFromParent()
-//        buddyActionFrames.removeAll()
-//        numImages = ballPlayingAtlas.textureNames.count
-//        for i in 1...numImages {
-//            let ballPlayingTextureName = "ballPlaying\(i)"
-//            buddyActionFrames.append(ballPlayingAtlas.textureNamed(ballPlayingTextureName))
-//        }
-//        dog.removeAllActions()
-//        dog.position = CGPoint(x: frame.midX, y: frame.midY - 17)
-//        dog.run(SKAction.setTexture(ballPlayingAtlas.textureNamed("ballPlaying1"), resize: true))
-//        dog.run(SKAction.setTexture(buddyActionFrames[0], resize: false))
-//        dog.run(SKAction.repeat(SKAction.animate(with: buddyActionFrames, timePerFrame: 0.15), count: 3), completion: restDog)
-//    }
-    
-
     
     func setupSoap(){
         let soapFrame = objectsAtlas.textureNamed("soap")
