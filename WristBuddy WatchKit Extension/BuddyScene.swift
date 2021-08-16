@@ -8,7 +8,19 @@
 import WatchKit
 import SpriteKit
 
+
 class BuddyScene: SKScene {
+    
+    var rssURL = URL(string: "https://www.ansa.it/sito/notizie/topnews/topnews_rss.xml")
+    var news = [RSSData]()
+    let closeButton = SKShapeNode(circleOfRadius: 8.0)
+    let newsFrame = SKShapeNode(rectOf: CGSize(width: 165 , height: 170), cornerRadius: 10)
+    let newsTitle = SKLabelNode(fontNamed: "AvenirNext-Bold")
+    let newsDescription = SKLabelNode(fontNamed: "AvenirNext-Medium")
+    let newsCounter = SKLabelNode(fontNamed: "AvenirNext-Medium")
+    var newsCount = Int()
+    var currentNewsIndex = Int()
+    var isShowingNews = Bool()
     
     var numImages = Int()
     var dog = SKSpriteNode()
@@ -18,6 +30,7 @@ class BuddyScene: SKScene {
     var boneNode = SKSpriteNode()
     var soapNode = SKSpriteNode()
     var ballNode = SKSpriteNode()
+    var newspaperNode = SKSpriteNode()
     var boneAnimNode = SKSpriteNode()
     var bubblesNode = SKSpriteNode()
     var ballAnimNode = SKSpriteNode()
@@ -42,6 +55,8 @@ class BuddyScene: SKScene {
         setupBone()
         setupSoap()
         setupBall()
+        setupNewspaper()
+        downloadNews()
     }
     
     func redrawBackground(){
@@ -49,6 +64,160 @@ class BuddyScene: SKScene {
         background.zPosition = -3
         celestialObj.zPosition = -2
         foreground.zPosition = -1
+    }
+    
+    func downloadNews(){
+        let session: URLSession = {
+            let config = URLSessionConfiguration.default
+            config.allowsCellularAccess = true
+            config.allowsConstrainedNetworkAccess = true
+            config.allowsExpensiveNetworkAccess = true
+            config.waitsForConnectivity = true
+            return URLSession(configuration: config)
+        }()
+
+        let request = URLRequest(url: rssURL!)
+        let task = session.dataTask(with: request) {
+            (data, response, error) in
+            
+            if let obtainedData = data {
+                print("Downloaded news data")
+                self.parseNews(withData: obtainedData)
+            }
+            else if let requestError = error {
+                print("error \(requestError)")
+            } else {
+                print("unexpected error")
+            }
+        }
+        task.resume()
+    }
+    
+    func parseNews(withData: Data){
+        let parser = RSSParser()
+        parser.startParsingWithData(downloadedData: withData) { (Bool) in
+            if let data = parser.parsedData as [[String:String]]? {
+                for element in data {
+                    let data = RSSData.init(title: element["title"]!, description: element["description"]!, url: element["link"]!)
+                    news.append(data)
+                }
+                newsCount = data.count
+            }
+            
+        }
+        
+    }
+    
+    func displayNews(){
+        isShowingNews = true
+        if (news.count) != 0 {
+//            for i in news {
+//                print(" \(i.title) \n  \(i.description) \n \(i.url) \n")
+//            }
+            currentNewsIndex = 0
+            dog.isHidden = true
+            boneNode.isHidden = true
+            soapNode.isHidden = true
+            ballNode.isHidden = true
+            newspaperNode.isHidden = true
+            
+            newsFrame.fillColor = .black
+            
+            closeButton.fillColor = .red
+            closeButton.position = CGPoint(x: frame.midX - 75, y: frame.midY + 80)
+            
+            
+            newsTitle.lineBreakMode = .byWordWrapping
+            newsTitle.preferredMaxLayoutWidth = 160
+            newsTitle.numberOfLines = 2
+            newsTitle.text = news[0].title
+            newsTitle.fontSize = 13
+            newsTitle.fontColor = SKColor.white
+            newsTitle.position = CGPoint(x: frame.midX , y: frame.midY + 15)
+            
+            newsDescription.lineBreakMode = .byWordWrapping
+            newsDescription.preferredMaxLayoutWidth = 160
+            newsDescription.numberOfLines = 4
+            newsDescription.text = news[0].description
+            newsDescription.fontSize = 12
+            newsDescription.fontColor = SKColor.white
+            newsDescription.position = CGPoint(x: frame.midX , y: frame.midY - 40)
+            
+            
+            newsCounter.fontSize = 10
+            newsCounter.fontColor = SKColor.white
+            newsCounter.position = CGPoint(x: frame.midX, y: frame.midY - 65)
+            newsCounter.text = "\(currentNewsIndex+1) of \(newsCount)"
+            
+            addChild(newsFrame)
+            addChild(closeButton)
+            addChild(newsTitle)
+            addChild(newsDescription)
+            addChild(newsCounter)
+        } else {
+            print("There are no news downloaded")
+            
+            dog.isHidden = true
+            boneNode.isHidden = true
+            soapNode.isHidden = true
+            ballNode.isHidden = true
+            newspaperNode.isHidden = true
+            
+            
+            newsDescription.lineBreakMode = .byWordWrapping
+            newsDescription.preferredMaxLayoutWidth = 160
+            newsDescription.numberOfLines = 4
+            newsDescription.text = "Error fetching news. Please check your internet connection"
+            newsDescription.fontSize = 12
+            newsDescription.fontColor = SKColor.white
+            newsDescription.position = CGPoint(x: frame.midX , y: frame.midY - 30)
+            
+            closeButton.fillColor = .red
+            closeButton.position = CGPoint(x: frame.midX - 75, y: frame.midY + 80)
+            
+            newsFrame.fillColor = .black
+            
+            addChild(newsFrame)
+            addChild(closeButton)
+            addChild(newsDescription)
+        }
+        
+    }
+    
+//    func scrollNews(){
+//        if isShowingNews {
+//            if currentNewsIndex <= newsCount {
+//                currentNewsIndex += 1
+//                newsTitle.text = news[currentNewsIndex].title
+//                newsDescription.text = news[currentNewsIndex].description
+//                newsCounter.text = "\(currentNewsIndex+1) of \(newsCount)"
+//            }
+//        }
+//    }
+    
+    func nextNews(){
+        if isShowingNews{
+            if currentNewsIndex < newsCount - 1 {
+                print("currentNewsIndex \(currentNewsIndex) newsCount \(newsCount) ")
+                currentNewsIndex += 1
+                newsTitle.text = news[currentNewsIndex].title
+                newsDescription.text = news[currentNewsIndex].description
+                newsCounter.text = "\(currentNewsIndex+1) of \(newsCount)"
+            }
+        }
+
+    }
+    
+    func prevNews(){
+        if isShowingNews {
+            if currentNewsIndex >= 1 {
+                currentNewsIndex -= 1
+                newsTitle.text = news[currentNewsIndex].title
+                newsDescription.text = news[currentNewsIndex].description
+                newsCounter.text = "\(currentNewsIndex+1) of \(newsCount)"
+            }
+        }
+
     }
     
     
@@ -186,13 +355,7 @@ class BuddyScene: SKScene {
         scene?.addChild(foreground)
     }
     
-    func setupBone(){
-        let boneFrame = objectsAtlas.textureNamed("bone")
-        let setBone = SKAction.setTexture(boneFrame, resize: false)
-        boneNode.run(setBone)
-        boneNode.position = CGPoint(x: frame.midX - 50 , y: frame.midY - 80)
-        scene?.addChild(boneNode)
-    }
+
     
     func checkForNode(named: String) -> Bool {
         if (childNode(withName: named) as! SKSpriteNode?) != nil {
@@ -325,11 +488,19 @@ class BuddyScene: SKScene {
 
     }
     
+    func setupBone(){
+        let boneFrame = objectsAtlas.textureNamed("bone")
+        let setBone = SKAction.setTexture(boneFrame, resize: false)
+        boneNode.run(setBone)
+        boneNode.position = CGPoint(x: frame.midX - 60 , y: frame.midY - 80)
+        scene?.addChild(boneNode)
+    }
+    
     func setupSoap(){
         let soapFrame = objectsAtlas.textureNamed("soap")
         let setSoap = SKAction.setTexture(soapFrame, resize: false)
         soapNode.run(setSoap)
-        soapNode.position = CGPoint(x: frame.midX , y: frame.midY - 80)
+        soapNode.position = CGPoint(x: frame.midX - 20 , y: frame.midY - 80)
         soapNode.setScale(0.5)
         scene?.addChild(soapNode)
     }
@@ -339,8 +510,17 @@ class BuddyScene: SKScene {
         let setBall = SKAction.setTexture(ballFrame, resize: false)
         ballNode.run(setBall)
         ballNode.setScale(0.75)
-        ballNode.position = CGPoint(x: frame.midX + 50, y: frame.midY - 80)
+        ballNode.position = CGPoint(x: frame.midX + 20, y: frame.midY - 80)
         scene?.addChild(ballNode)
+    }
+    
+    func setupNewspaper(){
+        let newspaperFrame = objectsAtlas.textureNamed("newspaper")
+        let setNewspaper = SKAction.setTexture(newspaperFrame, resize: false)
+        newspaperNode.run(setNewspaper)
+        newspaperNode.setScale(0.75)
+        newspaperNode.position = CGPoint(x: frame.midX + 60, y: frame.midY - 80)
+        scene?.addChild(newspaperNode)
     }
     
     func setupRestingAnimation(){
@@ -412,6 +592,16 @@ class BuddyScene: SKScene {
             setupBubblesAnim1()
         } else if hitNodes.contains(ballNode) {
             setupBallAnim()
+        } else if hitNodes.contains(newspaperNode) {
+            displayNews()
+        } else if hitNodes.contains(closeButton) {
+            scene?.removeChildren(in: [closeButton, newsFrame, newsTitle, newsDescription, newsCounter])
+            isShowingNews = false
+            dog.isHidden = false
+            boneNode.isHidden = false
+            soapNode.isHidden = false
+            ballNode.isHidden = false
+            newspaperNode.isHidden = false
         }
     }
     

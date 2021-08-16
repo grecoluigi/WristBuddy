@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="18122" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="17701" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch38"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="18022"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="17500"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
@@ -13,6 +13,16 @@
                     <items>
                         <spriteKitScene alignment="left" scene="Buddy.sks" id="Pif-OW-qYL">
                             <gestureRecognizers>
+                                <swipeGestureRecognizer direction="8" id="pUr-vf-ANv" userLabel="Swipe Down Gesture Recognizer">
+                                    <connections>
+                                        <action selector="handleSwipeDown:" destination="AgC-eL-Hgc" id="Yl6-fo-rqR"/>
+                                    </connections>
+                                </swipeGestureRecognizer>
+                                <swipeGestureRecognizer direction="4" id="YHm-vL-xmc">
+                                    <connections>
+                                        <action selector="handleSwipeUp:" destination="AgC-eL-Hgc" id="TEN-MB-g2D"/>
+                                    </connections>
+                                </swipeGestureRecognizer>
                                 <tapGestureRecognizer id="WXy-SU-GeE">
                                     <connections>
                                         <action selector="handleTapWithTapGestureRecognizer:" destination="AgC-eL-Hgc" id="39T-Iw-zJb"/>
@@ -23,7 +33,9 @@
                     </items>
                     <connections>
                         <outlet property="buddyScene" destination="Pif-OW-qYL" id="lDZ-eA-61e"/>
-                        <outlet property="tapGestureRecognizer" destination="WXy-SU-GeE" id="qDE-y8-Td6"/>
+                        <outlet property="swipeDownGestureRecognizer" destination="pUr-vf-ANv" id="f4P-iF-pfk"/>
+                        <outlet property="swipeUpGestureRecognizer" destination="YHm-vL-xmc" id="fP0-BN-HEk"/>
+                        <outlet property="tapGestureRecognizer" destination="WXy-SU-GeE" id="IX3-mi-x4n"/>
                     </connections>
                 </controller>
             </objects>

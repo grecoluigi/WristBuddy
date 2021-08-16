@@ -13,6 +13,8 @@ class InterfaceController: WKInterfaceController {
     
     @IBOutlet weak var tapGestureRecognizer: WKTapGestureRecognizer!
     @IBOutlet weak var buddyScene: WKInterfaceSKScene!
+    @IBOutlet weak var swipeUpGestureRecognizer: WKSwipeGestureRecognizer!
+    @IBOutlet weak var swipeDownGestureRecognizer: WKSwipeGestureRecognizer!
     let scene = BuddyScene(fileNamed: "Buddy")
     override func awake(withContext context: Any?) {
         // Configure interface objects here.
@@ -24,6 +26,7 @@ class InterfaceController: WKInterfaceController {
     override func willActivate() {
         scene?.removeChildren(in: [scene!.background, scene!.celestialObj, scene!.foreground])
         scene?.redrawBackground()
+        scene?.downloadNews()
         // This method is called when watch view controller is about to be visible to user
     }
     
@@ -32,6 +35,22 @@ class InterfaceController: WKInterfaceController {
     }
 
     
+
+    
+    @IBAction func handleSwipeUp(_ swipeUpGestureRecognizer: WKSwipeGestureRecognizer) {
+        if swipeUpGestureRecognizer.state == .ended {
+            scene?.nextNews()
+        }
+        
+        
+    }
+    
+    @IBAction func handleSwipeDown(_ swipeDownGestureRecognizer: WKSwipeGestureRecognizer) {
+        if swipeDownGestureRecognizer.state == .ended {
+            scene?.prevNews()
+        }
+        
+    }
     @IBAction func handleTap(tapGestureRecognizer: WKTapGestureRecognizer){
         let tapX = (tapGestureRecognizer.locationInObject().x - (scene!.size.width / 2))
         let tapY = ((scene!.size.height / 2) -  tapGestureRecognizer.locationInObject().y   )

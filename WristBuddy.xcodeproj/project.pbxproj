@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		811D137426C858780094A58A /* RSSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811D137326C858780094A58A /* RSSData.swift */; };
+		811D137926C8589A0094A58A /* RSSParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811D137826C8589A0094A58A /* RSSParser.swift */; };
 		81495D2E26C2C0250058E5C0 /* dogJump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 81495D2D26C2C0250058E5C0 /* dogJump.atlas */; };
 		81495D2F26C2C0250058E5C0 /* dogJump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 81495D2D26C2C0250058E5C0 /* dogJump.atlas */; };
 		81790BE126B264B70031181B /* lionWaving.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 81790BE026B264B70031181B /* lionWaving.atlas */; };
@@ -86,6 +88,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		811D137326C858780094A58A /* RSSData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSData.swift; sourceTree = "<group>"; };
+		811D137826C8589A0094A58A /* RSSParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSParser.swift; sourceTree = "<group>"; };
 		81495D2D26C2C0250058E5C0 /* dogJump.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = dogJump.atlas; sourceTree = "<group>"; };
 		81790BE026B264B70031181B /* lionWaving.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = lionWaving.atlas; sourceTree = "<group>"; };
 		819F906026AB2F4100465F1A /* WristBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WristBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,6 +184,8 @@
 				819F908226AB2F4300465F1A /* Info.plist */,
 				819F908326AB2F4300465F1A /* PushNotificationPayload.apns */,
 				819F909126AB31B800465F1A /* Buddy.sks */,
+				811D137326C858780094A58A /* RSSData.swift */,
+				811D137826C8589A0094A58A /* RSSParser.swift */,
 			);
 			path = "WristBuddy WatchKit Extension";
 			sourceTree = "<group>";
@@ -347,8 +353,10 @@
 			files = (
 				819F907D26AB2F4200465F1A /* NotificationController.swift in Sources */,
 				819F907F26AB2F4200465F1A /* ComplicationController.swift in Sources */,
+				811D137426C858780094A58A /* RSSData.swift in Sources */,
 				819F907B26AB2F4200465F1A /* ExtensionDelegate.swift in Sources */,
 				819F909426AB372000465F1A /* BuddyScene.swift in Sources */,
+				811D137926C8589A0094A58A /* RSSParser.swift in Sources */,
 				819F907926AB2F4200465F1A /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
