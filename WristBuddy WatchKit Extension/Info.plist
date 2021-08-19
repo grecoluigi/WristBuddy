@@ -34,6 +34,10 @@
 	</dict>
 	<key>WKExtensionDelegateClassName</key>
 	<string>$(PRODUCT_MODULE_NAME).ExtensionDelegate</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>AmericanTypewriter.ttc</string>
+	</array>
 	<key>WKWatchOnly</key>
 	<true/>
 </dict>

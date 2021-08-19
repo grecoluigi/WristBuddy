@@ -11,9 +11,14 @@
 		811D137926C8589A0094A58A /* RSSParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811D137826C8589A0094A58A /* RSSParser.swift */; };
 		81495D2E26C2C0250058E5C0 /* dogJump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 81495D2D26C2C0250058E5C0 /* dogJump.atlas */; };
 		81495D2F26C2C0250058E5C0 /* dogJump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 81495D2D26C2C0250058E5C0 /* dogJump.atlas */; };
+		8171F25426CAC94A00A3AB8F /* AmericanTypewriter.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 8171F25326CAC94A00A3AB8F /* AmericanTypewriter.ttc */; };
 		81790BE126B264B70031181B /* lionWaving.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 81790BE026B264B70031181B /* lionWaving.atlas */; };
 		81790BE226B264B70031181B /* lionWaving.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 81790BE026B264B70031181B /* lionWaving.atlas */; };
 		8189C31926AEC296001B5C9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 819F906C26AB2F4200465F1A /* Assets.xcassets */; };
+		818F4B3B26CE45A400B41914 /* newspaperAnim.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 818F4B3A26CE45A400B41914 /* newspaperAnim.atlas */; };
+		818F4B3C26CE45A400B41914 /* newspaperAnim.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 818F4B3A26CE45A400B41914 /* newspaperAnim.atlas */; };
+		818F4B3E26CE46EF00B41914 /* newsEating.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 818F4B3D26CE46EF00B41914 /* newsEating.atlas */; };
+		818F4B3F26CE46EF00B41914 /* newsEating.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 818F4B3D26CE46EF00B41914 /* newsEating.atlas */; };
 		819F906526AB2F4200465F1A /* WristBuddy WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 819F906426AB2F4200465F1A /* WristBuddy WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		819F906B26AB2F4200465F1A /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 819F906926AB2F4200465F1A /* Interface.storyboard */; };
 		819F906D26AB2F4200465F1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 819F906C26AB2F4200465F1A /* Assets.xcassets */; };
@@ -27,7 +32,6 @@
 		819F909426AB372000465F1A /* BuddyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F909326AB372000465F1A /* BuddyScene.swift */; };
 		81EBEE9C26C53EF5003B773E /* screen3.png in Resources */ = {isa = PBXBuildFile; fileRef = 81EBEE9826C53EF5003B773E /* screen3.png */; };
 		81EBEE9D26C53EF5003B773E /* screen2.png in Resources */ = {isa = PBXBuildFile; fileRef = 81EBEE9926C53EF5003B773E /* screen2.png */; };
-		81EBEE9E26C53EF5003B773E /* screen1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 81EBEE9A26C53EF5003B773E /* screen1.gif */; };
 		81EBEE9F26C53EF5003B773E /* screen4.png in Resources */ = {isa = PBXBuildFile; fileRef = 81EBEE9B26C53EF5003B773E /* screen4.png */; };
 		823FE3C326B6816300C1A764 /* ballAnim.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 823FE3C226B6816300C1A764 /* ballAnim.atlas */; };
 		823FE3C426B6816300C1A764 /* ballAnim.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 823FE3C226B6816300C1A764 /* ballAnim.atlas */; };
@@ -91,7 +95,11 @@
 		811D137326C858780094A58A /* RSSData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSData.swift; sourceTree = "<group>"; };
 		811D137826C8589A0094A58A /* RSSParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSParser.swift; sourceTree = "<group>"; };
 		81495D2D26C2C0250058E5C0 /* dogJump.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = dogJump.atlas; sourceTree = "<group>"; };
+		817082F826CE4EDE0022A5FC /* screen1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = screen1.mp4; sourceTree = "<group>"; };
+		8171F25326CAC94A00A3AB8F /* AmericanTypewriter.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = AmericanTypewriter.ttc; sourceTree = "<group>"; };
 		81790BE026B264B70031181B /* lionWaving.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = lionWaving.atlas; sourceTree = "<group>"; };
+		818F4B3A26CE45A400B41914 /* newspaperAnim.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = newspaperAnim.atlas; sourceTree = "<group>"; };
+		818F4B3D26CE46EF00B41914 /* newsEating.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = newsEating.atlas; sourceTree = "<group>"; };
 		819F906026AB2F4100465F1A /* WristBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WristBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		819F906426AB2F4200465F1A /* WristBuddy WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WristBuddy WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		819F906A26AB2F4200465F1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -109,7 +117,6 @@
 		819F909326AB372000465F1A /* BuddyScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyScene.swift; sourceTree = "<group>"; };
 		81EBEE9826C53EF5003B773E /* screen3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen3.png; sourceTree = "<group>"; };
 		81EBEE9926C53EF5003B773E /* screen2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen2.png; sourceTree = "<group>"; };
-		81EBEE9A26C53EF5003B773E /* screen1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = screen1.gif; sourceTree = "<group>"; };
 		81EBEE9B26C53EF5003B773E /* screen4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen4.png; sourceTree = "<group>"; };
 		823FE3C226B6816300C1A764 /* ballAnim.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ballAnim.atlas; sourceTree = "<group>"; };
 		823FE3C826B683BB00C1A764 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -132,9 +139,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8171F25226CAC93200A3AB8F /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8171F25326CAC94A00A3AB8F /* AmericanTypewriter.ttc */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		819F905926AB2F4100465F1A = {
 			isa = PBXGroup;
 			children = (
+				8171F25226CAC93200A3AB8F /* fonts */,
 				81EBEE9426C534E7003B773E /* Screenshots */,
 				823FE3C826B683BB00C1A764 /* README.md */,
 				819F906826AB2F4200465F1A /* WristBuddy WatchKit App */,
@@ -165,6 +181,8 @@
 				82B8D08926B5972000015CE7 /* boneEating.atlas */,
 				82B8D08A26B5972000015CE7 /* dogBath.atlas */,
 				8285BD4B26B4576700435B5B /* boneAnim.atlas */,
+				818F4B3A26CE45A400B41914 /* newspaperAnim.atlas */,
+				818F4B3D26CE46EF00B41914 /* newsEating.atlas */,
 				829F1DFB26B2F4B90024C766 /* objects.atlas */,
 				81790BE026B264B70031181B /* lionWaving.atlas */,
 				819F906E26AB2F4200465F1A /* Info.plist */,
@@ -193,7 +211,7 @@
 		81EBEE9426C534E7003B773E /* Screenshots */ = {
 			isa = PBXGroup;
 			children = (
-				81EBEE9A26C53EF5003B773E /* screen1.gif */,
+				817082F826CE4EDE0022A5FC /* screen1.mp4 */,
 				81EBEE9926C53EF5003B773E /* screen2.png */,
 				81EBEE9826C53EF5003B773E /* screen3.png */,
 				81EBEE9B26C53EF5003B773E /* screen4.png */,
@@ -301,7 +319,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				81EBEE9D26C53EF5003B773E /* screen2.png in Resources */,
-				81EBEE9E26C53EF5003B773E /* screen1.gif in Resources */,
 				81EBEE9F26C53EF5003B773E /* screen4.png in Resources */,
 				81EBEE9C26C53EF5003B773E /* screen3.png in Resources */,
 			);
@@ -311,8 +328,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				818F4B3B26CE45A400B41914 /* newspaperAnim.atlas in Resources */,
 				819F906D26AB2F4200465F1A /* Assets.xcassets in Resources */,
 				823FE3C326B6816300C1A764 /* ballAnim.atlas in Resources */,
+				818F4B3E26CE46EF00B41914 /* newsEating.atlas in Resources */,
 				82B8D08B26B5972000015CE7 /* boneEating.atlas in Resources */,
 				81495D2E26C2C0250058E5C0 /* dogJump.atlas in Resources */,
 				82C034C126B712D400C4F320 /* bubbles.atlas in Resources */,
@@ -330,6 +349,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8285BD5026B4597000435B5B /* boneAnim.atlas in Resources */,
+				8171F25426CAC94A00A3AB8F /* AmericanTypewriter.ttc in Resources */,
+				818F4B3C26CE45A400B41914 /* newspaperAnim.atlas in Resources */,
 				8261BC3926BAF2D100311AEF /* ballPlaying.atlas in Resources */,
 				81495D2F26C2C0250058E5C0 /* dogJump.atlas in Resources */,
 				823FE3C426B6816300C1A764 /* ballAnim.atlas in Resources */,
@@ -340,6 +361,7 @@
 				8189C31926AEC296001B5C9E /* Assets.xcassets in Resources */,
 				819F908126AB2F4300465F1A /* Assets.xcassets in Resources */,
 				82B8D09426B5972800015CE7 /* boneEating.atlas in Resources */,
+				818F4B3F26CE46EF00B41914 /* newsEating.atlas in Resources */,
 				82C034C226B712D400C4F320 /* bubbles.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

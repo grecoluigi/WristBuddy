@@ -13,15 +13,18 @@ class BuddyScene: SKScene {
     
     var rssURL = URL(string: "https://www.ansa.it/sito/notizie/topnews/topnews_rss.xml")
     var news = [RSSData]()
-    let closeButton = SKShapeNode(circleOfRadius: 8.0)
-    let newsFrame = SKShapeNode(rectOf: CGSize(width: 165 , height: 170), cornerRadius: 10)
-    let newsTitle = SKLabelNode(fontNamed: "AvenirNext-Bold")
-    let newsDescription = SKLabelNode(fontNamed: "AvenirNext-Medium")
-    let newsCounter = SKLabelNode(fontNamed: "AvenirNext-Medium")
+    var closeButton = SKSpriteNode()
+    //let newsFrame = SKShapeNode(rectOf: CGSize(width: 165 , height: 170), cornerRadius: 10)
+    let newsTitle = SKLabelNode(fontNamed: "AmericanTypewriter-Bold")
+    let newsDescription = SKLabelNode(fontNamed: "AmericanTypewriter")
+    let newsCounter = SKLabelNode(fontNamed: "AmericanTypewriter")
     var newsCount = Int()
     var currentNewsIndex = Int()
     var isShowingNews = Bool()
     
+    var newsFrame = SKSpriteNode()
+    var leftPaw = SKSpriteNode()
+    var rightPaw = SKSpriteNode()
     var numImages = Int()
     var dog = SKSpriteNode()
     var buddyActionFrames: [SKTexture] = []
@@ -32,6 +35,7 @@ class BuddyScene: SKScene {
     var ballNode = SKSpriteNode()
     var newspaperNode = SKSpriteNode()
     var boneAnimNode = SKSpriteNode()
+    var newspaperAnimNode = SKSpriteNode()
     var bubblesNode = SKSpriteNode()
     var ballAnimNode = SKSpriteNode()
     var background = SKSpriteNode()
@@ -57,6 +61,19 @@ class BuddyScene: SKScene {
         setupBall()
         setupNewspaper()
         downloadNews()
+        
+        let newsFrameTexture = SKTextureAtlas(named: "objects").textureNamed("frame")
+        let setNewsFrameTexture = SKAction.setTexture(newsFrameTexture, resize: false)
+        newsFrame.run(setNewsFrameTexture)
+        var pawTexture = SKTextureAtlas(named: "objects").textureNamed("pawL")
+        var setPawTexture = SKAction.setTexture(pawTexture, resize: false)
+        leftPaw.run(setPawTexture)
+        leftPaw.position = CGPoint(x: -70 ,y: -85)
+        pawTexture = SKTextureAtlas(named: "objects").textureNamed("pawR")
+        setPawTexture = SKAction.setTexture(pawTexture, resize: false)
+        rightPaw.run(setPawTexture)
+        rightPaw.position = CGPoint(x: 70 ,y: -85)
+        
     }
     
     func redrawBackground(){
@@ -81,7 +98,6 @@ class BuddyScene: SKScene {
             (data, response, error) in
             
             if let obtainedData = data {
-                print("Downloaded news data")
                 self.parseNews(withData: obtainedData)
             }
             else if let requestError = error {
@@ -111,9 +127,6 @@ class BuddyScene: SKScene {
     func displayNews(){
         isShowingNews = true
         if (news.count) != 0 {
-//            for i in news {
-//                print(" \(i.title) \n  \(i.description) \n \(i.url) \n")
-//            }
             currentNewsIndex = 0
             dog.isHidden = true
             boneNode.isHidden = true
@@ -121,39 +134,46 @@ class BuddyScene: SKScene {
             ballNode.isHidden = true
             newspaperNode.isHidden = true
             
-            newsFrame.fillColor = .black
+            //newsFrame.fillColor = .black
             
-            closeButton.fillColor = .red
+            let closeButtonTexture = SKTextureAtlas(named: "objects").textureNamed("closeButton")
+            let setCloseButtonTexture = SKAction.setTexture(closeButtonTexture, resize: false)
+            closeButton.setScale(0.5)
             closeButton.position = CGPoint(x: frame.midX - 75, y: frame.midY + 80)
+            closeButton.run(setCloseButtonTexture)
             
             
-            newsTitle.lineBreakMode = .byWordWrapping
+            newsTitle.lineBreakMode = .byClipping
             newsTitle.preferredMaxLayoutWidth = 160
+            newsTitle.verticalAlignmentMode = .center
             newsTitle.numberOfLines = 2
             newsTitle.text = news[0].title
             newsTitle.fontSize = 13
-            newsTitle.fontColor = SKColor.white
-            newsTitle.position = CGPoint(x: frame.midX , y: frame.midY + 15)
+            newsTitle.fontColor = SKColor.black
+            newsTitle.position = CGPoint(x: frame.midX , y: frame.midY + 40)
             
-            newsDescription.lineBreakMode = .byWordWrapping
-            newsDescription.preferredMaxLayoutWidth = 160
+            newsDescription.lineBreakMode = .byClipping
+            newsDescription.preferredMaxLayoutWidth = 150
+            newsDescription.verticalAlignmentMode = .center
             newsDescription.numberOfLines = 4
             newsDescription.text = news[0].description
             newsDescription.fontSize = 12
-            newsDescription.fontColor = SKColor.white
-            newsDescription.position = CGPoint(x: frame.midX , y: frame.midY - 40)
+            newsDescription.fontColor = SKColor.black
+            newsDescription.position = CGPoint(x: frame.midX , y: frame.midY - 20)
             
             
             newsCounter.fontSize = 10
-            newsCounter.fontColor = SKColor.white
-            newsCounter.position = CGPoint(x: frame.midX, y: frame.midY - 65)
+            newsCounter.fontColor = SKColor.black
+            newsCounter.position = CGPoint(x: frame.midX, y: frame.midY - 75)
             newsCounter.text = "\(currentNewsIndex+1) of \(newsCount)"
             
             addChild(newsFrame)
-            addChild(closeButton)
             addChild(newsTitle)
             addChild(newsDescription)
             addChild(newsCounter)
+            addChild(closeButton)
+            addChild(leftPaw)
+            addChild(rightPaw)
         } else {
             print("There are no news downloaded")
             
@@ -171,15 +191,21 @@ class BuddyScene: SKScene {
             newsDescription.fontSize = 12
             newsDescription.fontColor = SKColor.white
             newsDescription.position = CGPoint(x: frame.midX , y: frame.midY - 30)
+
             
-            closeButton.fillColor = .red
+            let closeButtonTexture = SKTextureAtlas(named: "objects").textureNamed("closeButton")
+            let setCloseButtonTexture = SKAction.setTexture(closeButtonTexture, resize: false)
+            closeButton.setScale(0.8)
+            closeButton.run(setCloseButtonTexture)
             closeButton.position = CGPoint(x: frame.midX - 75, y: frame.midY + 80)
             
-            newsFrame.fillColor = .black
+            //newsFrame.fillColor = .black
             
             addChild(newsFrame)
-            addChild(closeButton)
             addChild(newsDescription)
+            addChild(closeButton)
+            addChild(leftPaw)
+            addChild(rightPaw)
         }
         
     }
@@ -198,7 +224,6 @@ class BuddyScene: SKScene {
     func nextNews(){
         if isShowingNews{
             if currentNewsIndex < newsCount - 1 {
-                print("currentNewsIndex \(currentNewsIndex) newsCount \(newsCount) ")
                 currentNewsIndex += 1
                 newsTitle.text = news[currentNewsIndex].title
                 newsDescription.text = news[currentNewsIndex].description
@@ -404,6 +429,43 @@ class BuddyScene: SKScene {
         })
     }
     
+    func setupNewspaperAnim(){
+        if checkForNode(named: "newspaperAnimNode") == false {
+        let newspaperAnimAtlas = SKTextureAtlas(named: "newspaperAnim")
+        numImages = newspaperAnimAtlas.textureNames.count
+        objectAnimationFrames.removeAll()
+        for i in 1...numImages {
+            let newspaperAnimTextureName = "News\(i)"
+            objectAnimationFrames.append(newspaperAnimAtlas.textureNamed(newspaperAnimTextureName))
+        }
+        firstFrameTexture = objectAnimationFrames[0]
+        let setAnimTexture = SKAction.setTexture(firstFrameTexture, resize: false)
+        newspaperAnimNode.run(setAnimTexture)
+        newspaperAnimNode.setScale(1.4)
+        newspaperAnimNode.position = CGPoint(x: frame.midX, y: frame.midY + 20)
+        scene?.addChild(newspaperAnimNode)
+        newspaperAnimNode.name = "newspaperAnimNode"
+        newspaperAnimNode.run(SKAction.animate(with: objectAnimationFrames, timePerFrame: 0.15, resize: false, restore: false), completion: newsEatingAnim)
+    }
+    }
+    func newsEatingAnim() {
+        newspaperAnimNode.removeFromParent()
+        dog.removeAllActions()
+        buddyActionFrames.removeAll()
+        let newsEatingAtlas = SKTextureAtlas(named: "newsEating")
+        numImages = newsEatingAtlas.textureNames.count
+        for i in 1...numImages {
+            let newsEatingTextureName = "newsEat\(i)"
+            buddyActionFrames.append(newsEatingAtlas.textureNamed(newsEatingTextureName))
+        }
+        firstFrameTexture = buddyActionFrames[0]
+        let setNewsEatingTexture = SKAction.setTexture(firstFrameTexture, resize: false)
+        dog.run(setNewsEatingTexture)
+        dog.run(SKAction.repeat(SKAction.animate(with: buddyActionFrames, timePerFrame: 0.2, resize: false, restore: false), count: 2), completion: {
+            self.displayNews()
+        })
+    }
+    
     func setupBubblesAnim1(){
         if checkForNode(named: "bubblesNode") == false {
             objectAnimationFrames.removeAll()
@@ -518,7 +580,7 @@ class BuddyScene: SKScene {
         let newspaperFrame = objectsAtlas.textureNamed("newspaper")
         let setNewspaper = SKAction.setTexture(newspaperFrame, resize: false)
         newspaperNode.run(setNewspaper)
-        newspaperNode.setScale(0.75)
+        //newspaperNode.setScale(0.75)
         newspaperNode.position = CGPoint(x: frame.midX + 60, y: frame.midY - 80)
         scene?.addChild(newspaperNode)
     }
@@ -593,15 +655,16 @@ class BuddyScene: SKScene {
         } else if hitNodes.contains(ballNode) {
             setupBallAnim()
         } else if hitNodes.contains(newspaperNode) {
-            displayNews()
+            setupNewspaperAnim()
         } else if hitNodes.contains(closeButton) {
-            scene?.removeChildren(in: [closeButton, newsFrame, newsTitle, newsDescription, newsCounter])
+            scene?.removeChildren(in: [closeButton, newsFrame, newsTitle, newsDescription, newsCounter, leftPaw, rightPaw])
             isShowingNews = false
             dog.isHidden = false
             boneNode.isHidden = false
             soapNode.isHidden = false
             ballNode.isHidden = false
             newspaperNode.isHidden = false
+            restDog()
         }
     }
     
