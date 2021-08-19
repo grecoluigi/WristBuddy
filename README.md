@@ -1,6 +1,6 @@
 #  WristBuddy
 
-![Video](Screenshots/screen1.mp4) &nbsp; <img src="Screenshots/screen2.png" width="200"> &nbsp; <img src="Screenshots/screen3.png" width="200"> &nbsp; <img src="Screenshots/screen4.png" width="200">
+<img src="Screenshots/screen1.gif" width="200"> &nbsp; <img src="Screenshots/screen2.png" width="200"> &nbsp; <img src="Screenshots/screen3.png" width="200"> &nbsp; <img src="Screenshots/screen4.png" width="200">
 
 WristBuddy is a tiny tamagotchi-like companion for Apple Watch.
 Built in Swift and SceneKit, with no external libraries.
