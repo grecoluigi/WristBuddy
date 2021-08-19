@@ -11,6 +11,7 @@
 		811D137926C8589A0094A58A /* RSSParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811D137826C8589A0094A58A /* RSSParser.swift */; };
 		81495D2E26C2C0250058E5C0 /* dogJump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 81495D2D26C2C0250058E5C0 /* dogJump.atlas */; };
 		81495D2F26C2C0250058E5C0 /* dogJump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 81495D2D26C2C0250058E5C0 /* dogJump.atlas */; };
+		817082FA26CE4FD60022A5FC /* screen1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 817082F926CE4FD60022A5FC /* screen1.gif */; };
 		8171F25426CAC94A00A3AB8F /* AmericanTypewriter.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 8171F25326CAC94A00A3AB8F /* AmericanTypewriter.ttc */; };
 		81790BE126B264B70031181B /* lionWaving.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 81790BE026B264B70031181B /* lionWaving.atlas */; };
 		81790BE226B264B70031181B /* lionWaving.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 81790BE026B264B70031181B /* lionWaving.atlas */; };
@@ -95,7 +96,7 @@
 		811D137326C858780094A58A /* RSSData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSData.swift; sourceTree = "<group>"; };
 		811D137826C8589A0094A58A /* RSSParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSParser.swift; sourceTree = "<group>"; };
 		81495D2D26C2C0250058E5C0 /* dogJump.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = dogJump.atlas; sourceTree = "<group>"; };
-		817082F826CE4EDE0022A5FC /* screen1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = screen1.mp4; sourceTree = "<group>"; };
+		817082F926CE4FD60022A5FC /* screen1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = screen1.gif; sourceTree = "<group>"; };
 		8171F25326CAC94A00A3AB8F /* AmericanTypewriter.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = AmericanTypewriter.ttc; sourceTree = "<group>"; };
 		81790BE026B264B70031181B /* lionWaving.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = lionWaving.atlas; sourceTree = "<group>"; };
 		818F4B3A26CE45A400B41914 /* newspaperAnim.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = newspaperAnim.atlas; sourceTree = "<group>"; };
@@ -211,7 +212,7 @@
 		81EBEE9426C534E7003B773E /* Screenshots */ = {
 			isa = PBXGroup;
 			children = (
-				817082F826CE4EDE0022A5FC /* screen1.mp4 */,
+				817082F926CE4FD60022A5FC /* screen1.gif */,
 				81EBEE9926C53EF5003B773E /* screen2.png */,
 				81EBEE9826C53EF5003B773E /* screen3.png */,
 				81EBEE9B26C53EF5003B773E /* screen4.png */,
@@ -318,6 +319,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				817082FA26CE4FD60022A5FC /* screen1.gif in Resources */,
 				81EBEE9D26C53EF5003B773E /* screen2.png in Resources */,
 				81EBEE9F26C53EF5003B773E /* screen4.png in Resources */,
 				81EBEE9C26C53EF5003B773E /* screen3.png in Resources */,
